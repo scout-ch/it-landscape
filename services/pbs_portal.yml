@@ -3,5 +3,5 @@ description:
 owner: ITKOM
 responsible: Hermelin
 depends_on:
-  - Midata
+  - midata
 end_of_life: 2030
