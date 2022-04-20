@@ -4,3 +4,12 @@ owner: Team Midata
 responsible: Safari
 depends_on:
 end_of_life: 2030
+category:
+git: https://github.com/hitobito/
+homepage: https://db.scout.ch
+docs:
+stack: [ruby-on-rails, docker]
+domain: 
+  - group
+  - member
+  - login

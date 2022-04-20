@@ -1,7 +1,14 @@
 name: PBS Portal
 description:
-owner: ITKOM
-responsible: Hermelin
+owner: itkom
+responsible:
+  itkom: Hermelin
+  po:
 depends_on:
   - midata
 end_of_life: 2030
+git: https://github.com/scout-ch/Portal
+homepage: 
+docs:
+stack: [spring, java, docker]
+domain:
