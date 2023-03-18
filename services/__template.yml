@@ -1,13 +1,17 @@
-name: 
-description:
-owner: 
-responsibities: 
-  itkom: 
-  po:
-depends_on:
-end_of_life: 2030
-category:
-git:
-homepage:
-docs:
+name: # name of the service (string)
+description: # description of the service (text)
+strategy_reference: # information about the AFP/Steckbriefe (text)
+links: [] # links to the tool, code, docs etc. (object with: url, title)
+product_owner: # responsible person (reference to party)
+involved_parties: [] # array of people, company etc that are important for the service (object with: name (reference), description)
+has_sla: # boolean
+relations: [] # relationships to other services (object with: tool, relation_name, type [depends_on, relates_to, highly_depends_on])
+cirticality:  # business cirticality for the pbs (enum: [high, medium, low])
+development: # (enum: [external, internal])
+operations:  # (enum: [external, betriebsplattform])
+tags: []
 stack: []
+lifecycle: [] # object with state [idea, planned, in_progress, in_production, on_hold, eol, decommissioned], date
+last_updated: # date when the last changes were made (date)
+additional_information: # everything else (text)
+

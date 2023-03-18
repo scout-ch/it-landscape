@@ -1,24 +1,24 @@
 name: MiData
 description: |
-  Mitgliederdatenbank
+  Mitgliederdatenbank der PBS
 strategy_reference: |
-  Steckbrief 3.2.4.5
-  Lorem Ipsum
+  Steckbrief 7.1 Optimierung MiData
+  Operative Tätigkeiten 7.1.2 Audit MiData / 7.1.3 Weiterentwicklung MiData
 links:
-  - url: db.scout.ch
+  - url: https://db.scout.ch
     title: MiData
-  - url: github.ch
-    title: Github repo
+  - url: https://pbs.puzzle.ch
+    title: MiData Testsystem
+  - url: https://github.com/hitobito/hitobito_pbs
+    title: Github Repository
 product_owner: Safari
 involved_parties:
-  - name: 1_Filou
-    description: contributor
-  - name: 2_Team Midata
+  - name: 1_Team Midata
     description: Owner
   - name: 3_Puzzle ITC
     description: Lieferant
   - name: 4_ITKom
-    description: Komission   
+    description: Verantwortliche Komission   
 has_sla: true
 relations:
   - tool: 34_keycloak
@@ -26,10 +26,10 @@ relations:
     type: depends_on
   - tool: 333_APPUiO
     relation_name: hosting platform
-    type: depends_on # relates_to, highly_depends_on
-cirticality: high # medium / low
-development: external # internal
-operations: external # betriebsplattform
+    type: depends_on
+cirticality: high
+development: external
+operations: external
 tags:
   - pbs
   - open_source
@@ -37,12 +37,10 @@ stack: [ruby-on-rails, docker]
 lifecycle:
   - state: in_progress
     date: 2008-01-01
-  - state: in_production # idea, planned, in_progress, on_hold, eol, decommissioned
+  - state: in_production
     date: 2016-01-01
   - state: eol
     date: 2030-01-01
-last_updated: 2022-01-01
-additional_information: |
-  balblablablabla
-  blublubub
+last_updated: 2023-03-18
+additional_information:
 
