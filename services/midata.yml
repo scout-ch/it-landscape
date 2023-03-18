@@ -1,15 +1,36 @@
 name: MiData
-description:
-owner: Team Midata
-responsible: Safari
-depends_on:
-end_of_life: 2030
-category:
-git: https://github.com/hitobito/
-homepage: https://db.scout.ch
-docs:
+description: Mitgliederdatenbank
+strategy_reference: |
+  Steckbrief 3.2.4.5
+  Lorem Ipsum
+links:
+  - url: db.scout.ch
+    title: MiData
+  - url: github.ch
+    title: Github repo
+product_owner: Safari
+involved_parties:
+  - name: Cosinus
+    description: programmer
+  - name: Team Midata
+    description: Owner
+  - name: Puzzle ITC
+    description: Lieferant
+  - name: ITKom
+    description: Komission   
+has_sla: true
+relations:
+  - tool: Keycloak
+    relation_name: identity provider
+    type: depends_on
+circle: inner_circle # name to be disscussed
+tags:
+  - pbs
+  - open_source
 stack: [ruby-on-rails, docker]
-domain: 
-  - group
-  - member
-  - login
+lifecycle:
+  state: active
+  date: 2016-01-01
+last_updated: 2022-01-01
+end_of_life: 2032-01-01
+
