@@ -1,5 +1,6 @@
 name: MiData
-description: Mitgliederdatenbank
+description: |
+  Mitgliederdatenbank
 strategy_reference: |
   Steckbrief 3.2.4.5
   Lorem Ipsum
@@ -10,27 +11,38 @@ links:
     title: Github repo
 product_owner: Safari
 involved_parties:
-  - name: Cosinus
-    description: programmer
-  - name: Team Midata
+  - name: 1_Filou
+    description: contributor
+  - name: 2_Team Midata
     description: Owner
-  - name: Puzzle ITC
+  - name: 3_Puzzle ITC
     description: Lieferant
-  - name: ITKom
+  - name: 4_ITKom
     description: Komission   
 has_sla: true
 relations:
-  - tool: Keycloak
+  - tool: 34_keycloak
     relation_name: identity provider
     type: depends_on
-circle: inner_circle # name to be disscussed
+  - tool: 333_APPUiO
+    relation_name: hosting platform
+    type: depends_on # relates_to, highly_depends_on
+cirticality: high # medium / low
+development: external # internal
+operations: external # betriebsplattform
 tags:
   - pbs
   - open_source
 stack: [ruby-on-rails, docker]
 lifecycle:
-  state: active
-  date: 2016-01-01
+  - state: in_progress
+    date: 2008-01-01
+  - state: in_production # idea, planned, in_progress, on_hold, eol, decommissioned
+    date: 2016-01-01
+  - state: eol
+    date: 2030-01-01
 last_updated: 2022-01-01
-end_of_life: 2032-01-01
+additional_information: |
+  balblablablabla
+  blublubub
 
