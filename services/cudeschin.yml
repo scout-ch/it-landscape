@@ -1,0 +1,30 @@
+name: Cudeschin
+description: |
+  Cudeschin digital
+strategy_reference:
+links:
+  - url: https://cudeschin.pbs.ch/
+    title: Cudeschin Tool
+  - url: https://github.com/scout-ch/cudeschin
+    title: Github Repository
+product_owner: Kodack
+involved_parties:
+  - name: 11_Chili
+    description: Software development
+  - name: 10_AKom
+    description: Verantwortliche Komission   
+has_sla: false
+relations: [] # ???
+cirticality: low
+development: internal
+operations: external
+tags:
+  - open_source
+stack: [vue]
+lifecycle:
+  - state: in_production
+    date: 2021-03-23
+  - state: eol
+    date: 2031-01-01
+last_updated: 2023-03-18
+additional_information:
