@@ -1,0 +1,29 @@
+name: MiData
+description: |
+  Mitgliederdatenbank der PBS
+strategy_reference: |
+  Steckbrief
+
+  * 7.1 Optimierung MiData
+
+  Operative Tätigkeiten
+
+  * 7.1.2 Audit MiData
+  * 7.1.3 Weiterentwicklung MiData
+product_owner: content/party/Safari.yaml
+links:
+  - url: 'https://db.scout.ch'
+    label: App production
+involved_parties:
+  - party: content/party/Team-MiData.yaml
+    description: Commission
+  - party: content/party/Cosinus.yaml
+    description: Developer
+  - party: content/party/Puzzle-ITC.yaml
+    description: Supplier
+has_sla: true
+last_updated: '2023-03-24T23:00:00.000Z'
+tech_stack:
+  - stack_component: content/tech_stack/Docker.yaml
+  - stack_component: content/tech_stack/Webpack.yaml
+  - stack_component: content/tech_stack/Rails.yaml
