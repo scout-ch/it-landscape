@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const services = await Astro.glob("../../../services/*.md");
+
+  const x = services.map((service) => ({
+    params: {
+      id: service.frontmatter.name,
+    },
+    props: {
+      service: service.frontmatter,
+    },
+  }));
+  console.log(x);
+  return x;
+}
+
+const { id } = Astro.params;
+const { service } = Astro.props;
+console.log(service);
+---
+
+<Layout title={service.name}>
+  <article>
+    <h1>{service.name}</h1>
+    {service.description}
+  </article>
+</Layout>
