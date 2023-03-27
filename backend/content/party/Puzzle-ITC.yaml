@@ -1,0 +1,7 @@
+name: Puzzle ITC
+type: organization
+links:
+  - url: 'https://github.com/puzzle'
+    label: GitHub organization
+  - url: 'https://www.puzzle.ch'
+    label: Website

@@ -1,0 +1,22 @@
+name: HealthCheck
+product_owner: content/party/Folletta.yaml
+involved_parties:
+  - party: content/party/Cosinus.yaml
+    description: Security advisor
+  - party: content/party/Filou.yaml
+    description: is interested in
+has_sla: false
+description: ''
+strategy_reference: ''
+relations:
+  - service: content/service/MiData.yaml
+    description: oauth
+    relation_criticality: critically_depends_on
+links:
+  - url: 'https://hc.scout.ch'
+    label: App production
+last_updated: '2023-03-22T23:00:00.000Z'
+tech_stack:
+  - stack_component: content/tech_stack/Symfony.yaml
+  - stack_component: content/tech_stack/Docker.yaml
+  - stack_component: content/tech_stack/Angular.yaml

@@ -1,0 +1,15 @@
+name: eCamp
+description: |
+  digital camp planning for everyone
+product_owner: content/party/Olipo.yaml
+links:
+  - url: 'https://github.com/ecamp/ecamp3'
+    label: GitHub
+strategy_reference: ''
+involved_parties:
+  - party: content/party/Cosinus.yaml
+    description: Contributor
+  - party: content/party/Olipo.yaml
+    description: Contributor
+tech_stack:
+  - stack_component: content/tech_stack/Docker.yaml
