@@ -4,6 +4,8 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://scout-ch.github.io',
+  base: '/it-landscape',
   integrations: [tailwind()],
   vite: {
     plugins: [yaml()]
