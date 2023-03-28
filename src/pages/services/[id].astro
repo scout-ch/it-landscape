@@ -24,6 +24,26 @@ console.log(service);
 <Layout title={service.name}>
   <article>
     <h1>{service.name}</h1>
-    {service.description}
+    <p>{service.description}</p>
+
+    <dl>
+      <dt>Steckbrief</dt>
+      <dd>{service.strategy_reference}</dd>
+    </dl>
+
+    <dl>
+      <dt>Steckbrief</dt>
+      <dd>{service.strategy_reference}</dd>
+    </dl>
   </article>
 </Layout>
+
+<style lang="scss">
+  dl {
+    margin-bottom: 1em;
+
+    dt {
+      font-weight: bold;
+    }
+  }
+</style>
