@@ -1,5 +1,4 @@
 ---
-import "../styles/global.scss";
 export interface Props {
   title: string;
 }
@@ -16,72 +15,31 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
-    <header class="page-header">
-      <div class="container">
-        <a class="logo" href="/">
-          <img alt="Pfadibewegung Schweiz" src="/logo.svg" />
+  <body class="min-h-screen bg-[#f8f7f6]">
+    <header class="bg-brombeer text-white">
+      <div class="container mx-auto flex flex-col md:flex-row items-center">
+        <a class="block m-5" href="/">
+          <img width="300" class="max-w-full" alt="Pfadibewegung Schweiz" src="/logo.svg" />
         </a>
 
-        <button id="btn-menu" type="button" class="btn-icon">
+        <button id="btn-menu" type="button">
           <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
               fill="currentColor"
-              d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+              d="M16 132h416c9 0 16-7 16-16V76c0-9-7-16-16-16H16C7 60 0 67 0 76v40c0 9 7 16 16 16zm0 160h416c9 0 16-7 16-16v-40c0-9-7-16-16-16H16c-9 0-16 7-16 16v40c0 9 7 16 16 16zm0 160h416c9 0 16-7 16-16v-40c0-9-7-16-16-16H16c-9 0-16 7-16 16v40c0 9 7 16 16 16z"
             ></path>
           </svg>
         </button>
 
-        <div class="navigation">
-          <nav class="links">
-            <ul>
-              <li>
-                <a href="http://portal-hilfe.scouts.ch" target="_blank" rel="noopener">Hilfe</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <nav class="w-full p-5">
+          <ul class="flex flex-wrap items-center md:justify-end justify-center w-full text-lg font-bold">
+            <li>
+              <a href="/services">Services</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
-    <slot />
   </body>
+  <slot />
 </html>
-
-<style lang="scss">
-  .page-header {
-    background-color: #521d3a;
-    color: #ffffff;
-    height: 13rem;
-    left: 0;
-    padding: 1.5rem 0;
-    // position: fixed;
-    // right: 0;
-    // top: 0;
-    // z-index: 100;
-
-    .container {
-      height: 100%;
-      margin-bottom: 0;
-      position: relative;
-    }
-
-    .logo {
-      display: inline-block;
-      height: 7rem;
-      text-decoration: none;
-      width: 33.3333333333%;
-    }
-
-    .navigation {
-      align-items: center;
-      display: flex;
-      justify-content: space-between;
-      float: right;
-      height: 100%;
-      margin-bottom: 0;
-      position: relative;
-      vertical-align: top;
-      width: 66.6666666667%;
-    }
-  }
-</style>

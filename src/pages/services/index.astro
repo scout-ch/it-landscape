@@ -1,0 +1,30 @@
+---
+import { getServices } from "../../services/services";
+import Layout from "../../layouts/Layout.astro";
+
+const services = await getServices();
+---
+
+<Layout title="Services">
+  <main class="container mx-auto p-5">
+    <h1 class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800">
+      Services
+    </h1>
+    <table cellpadding="5">
+      {
+        Array.from(services.values()).map((service) => (
+          <tr>
+            <td>
+              <a class="text-brombeer hover:underscore" href={`/services/${service.id}`}>
+                {service.name}
+              </a>
+            </td>
+            <td>
+              <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Aktiv</span>
+            </td>
+          </tr>
+        ))
+      }
+    </table>
+  </main>
+</Layout>
