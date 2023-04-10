@@ -42,9 +42,9 @@ jobs:
       - name: Build TinaCMS
         working-directory: backend
         env:
-          TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          NEXT_PUBLIC_TINA_BRANCH: ${{ github.head_ref }}
+          NEXT_PUBLIC_TINA_BRANCH: main
         run: npx tinacms build
       - name: Copy TinaCMS artifacts
         run: |
