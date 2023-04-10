@@ -8,11 +8,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
-env:
-  TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
-  TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  NEXT_PUBLIC_TINA_BRANCH: ${{ github.head_ref }}
-
 # Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
@@ -41,11 +36,18 @@ jobs:
             # path: . # The root location of your Astro project inside the repository. (optional)
             # node-version: 16 # The specific version of Node that should be used to build your site. Defaults to 16. (optional)
             # package-manager: yarn # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
-      - name: Install and build TinaCMS
+      - name: Install TinaCMS
+        working-directory: backend
+        run: npm ci
+      - name: Build TinaCMS
+        working-directory: backend
+        env:
+          TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_BRANCH: ${{ github.head_ref }}
+        run: npx tinacms build
+      - name: Copy TinaCMS artifacts
         run: |
-          cd ./backend
-          npm ci
-          npm run build
           cp -R ./backend/public/admin/ ./dist/
           rm ./dist/admin/.gitignore
       - name: Create Pages Artifact
