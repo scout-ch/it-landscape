@@ -7,7 +7,12 @@ on:
     branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
-  
+
+env:
+  TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+  TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+  NEXT_PUBLIC_TINA_BRANCH: ${{ github.head_ref }}
+
 # Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
@@ -20,12 +25,33 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
-      - name: Install, build, and upload your site
-        uses: withastro/action@v0
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Install and build astro
+        shell: 'bash'
+        run: |
+          yarn
+          yarn build
+      # - name: Install, build, and upload your site
+      #  uses: withastro/action@v0
         # with:
             # path: . # The root location of your Astro project inside the repository. (optional)
             # node-version: 16 # The specific version of Node that should be used to build your site. Defaults to 16. (optional)
             # package-manager: yarn # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+      - name: Install and build TinaCMS
+        run: |
+          cd ./backend
+          npm ci
+          npm run build
+          cp -R ./backend/public/admin/ ./dist/
+          rm ./dist/admin/.gitignore
+      - name: Create Pages Artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './dist/'
 
   deploy:
     needs: build
