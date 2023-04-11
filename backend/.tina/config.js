@@ -277,7 +277,7 @@ export const config = defineConfig({
   },
   build: {
     publicFolder: "public", // The public asset folder for your framework
-    outputFolder: "admin", // within the public folder
+    outputFolder: "it-landscape/admin", // within the public folder
   },
   schema,
 });

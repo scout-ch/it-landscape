@@ -48,7 +48,7 @@ jobs:
         run: npx tinacms build
       - name: Copy TinaCMS artifacts
         run: |
-          cp -R ./backend/public/admin/ ./dist/
+          cp -R ./backend/public/it-landscape/admin/ ./dist/
           rm ./dist/admin/.gitignore
       - name: Create Pages Artifact
         uses: actions/upload-pages-artifact@v1
