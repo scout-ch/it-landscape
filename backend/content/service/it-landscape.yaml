@@ -1,6 +1,13 @@
 name: it-landscape
-description: ''
+description: |
+  source of truth for all IT services
 strategy_reference: ''
 links:
   - url: 'https://scout-ch.github.io/it-landscape'
     label: site
+involved_parties:
+  - party: content/party/Filou.yaml
+    description: Developer
+  - party: content/party/Olipo.yaml
+    description: Developer
+last_updated: '2023-04-10T22:00:00.000Z'
