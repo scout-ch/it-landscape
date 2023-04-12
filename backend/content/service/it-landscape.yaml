@@ -4,7 +4,7 @@ description: |
 strategy_reference: ''
 links:
   - url: 'https://scout-ch.github.io/it-landscape'
-    label: site
+    label: Recursion
 involved_parties:
   - party: content/party/Filou.yaml
     description: Developer
