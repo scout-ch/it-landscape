@@ -44,6 +44,12 @@ const schema = defineSchema({
           required: true,
         },
         {
+          type: "string",
+          label: "Criticality",
+          name: "criticality",
+          options: ["high", "medium", "low"],
+        },
+        {
           name: "strategy_reference",
           label: "Strategy reference",
           type: "rich-text",
@@ -54,6 +60,18 @@ const schema = defineSchema({
           label: "Product owner",
           type: "reference",
           collections: ["party"],
+        },
+        {
+          type: "string",
+          label: "Development",
+          name: "development",
+          options: ["external", "internal"],
+        },
+        {
+          type: "string",
+          label: "Operations",
+          name: "operations",
+          options: ["external", "betriebsplattform"],
         },
         {
           name: "links",
@@ -152,13 +170,35 @@ const schema = defineSchema({
           },
         },
         {
-          type: "datetime",
-          name: "last_updated",
-          label: "Last updated",
+          name: "lifecycle",
+          label: "Lifecycle",
+          type: "object",
+          list: true,
+          fields: [
+            {
+              type: "string",
+              label: "State",
+              name: "state",
+              required: true,
+              options: ["idea", "planned", "in_progress", "in_production", "on_hold", "eol", "decommissioned"],
+            },
+            {
+              name: "date",
+              label: "Date",
+              type: "datetime",
+              required: true,
+              ui: {
+                timeFormat: "DD.MM.YYYY"
+              },
+            },
+          ],
           ui: {
-            timeFormat: "DD.MM.YYYY"
+            // This allows the customization of the list item UI
+            // Data can be accessed by item?.<Name of field>
+            itemProps: (item) => {
+              return { label: `${item?.state}  ( ${item?.date} )` };
+            },
           },
-          required: true,
         },
         {
           name: "tech_stack",
@@ -182,6 +222,20 @@ const schema = defineSchema({
               return { label: `${item?.stack_component}` }
             },
           },
+        },
+        {
+          name: "additional_information",
+          label: "Additional Information",
+          type: "rich-text",
+        },
+        {
+          type: "datetime",
+          name: "last_updated",
+          label: "Last updated",
+          ui: {
+            timeFormat: "DD.MM.YYYY"
+          },
+          required: true,
         },
       ],
     },
