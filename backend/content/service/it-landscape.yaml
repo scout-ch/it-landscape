@@ -13,3 +13,8 @@ involved_parties:
 last_updated: '2023-04-10T22:00:00.000Z'
 tech_stack:
   - stack_component: content/tech_stack/GitHub-pages.yaml
+lifecycle:
+  - state: in_progress
+    date: '2023-09-04T22:00:00.000Z'
+additional_information: ''
+product_owner: content/party/Folletta.yaml

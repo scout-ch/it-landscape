@@ -11,6 +11,13 @@ const services = await getServices();
       Services
     </h1>
     <table cellpadding="5">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Status</td>
+          <td>last updated</td>
+        </tr>
+      </thead>
       {
         Array.from(services.values()).map((service) => (
           <tr>
@@ -20,7 +27,10 @@ const services = await getServices();
               </a>
             </td>
             <td>
-              <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Aktiv</span>
+              <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{service.lifecycle[service.lifecycle.length -1].state}</span>
+            </td>
+            <td>
+              {new Date(service.last_updated).toLocaleDateString('de')}
             </td>
           </tr>
         ))

@@ -13,3 +13,7 @@ involved_parties:
     description: Contributor
 tech_stack:
   - stack_component: content/tech_stack/Docker.yaml
+lifecycle:
+  - state: in_progress
+    date: '2023-09-14T22:00:00.000Z'
+additional_information: ''
