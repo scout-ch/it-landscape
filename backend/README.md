@@ -16,6 +16,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+Admin URL: [http://localhost:3000/it-landscape/admin/index.html](http://localhost:3000/it-landscape/admin/index.html)
+
 ### Building the Starter Locally (Using the hosted content API)
 
 Replace the `.env.example`, with `.env`
