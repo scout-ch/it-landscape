@@ -1,8 +1,11 @@
 ---
-import { getServices } from "../../services/data";
-import Layout from "../../layouts/Layout.astro";
+import { client } from "../../../backend/.tina/__generated__/client.js"
+import { Debug } from 'astro:components'
+import Layout from "../layouts/Layout.astro";
+import { getServices } from "../../../src/services/data";
 
 const services = await getServices();
+const services2 = await client.queries.service({relativePath: 'eCamp.yaml'})
 ---
 
 <Layout title="Services">
@@ -17,7 +20,7 @@ const services = await getServices();
           <td>Status</td>
           <td>last updated</td>
         </tr>
-      </thead>
+      </thead>$<Debug values={services2.data.service.has_sla}>
       {
         Array.from(services.values()).map((service) => (
           <tr>

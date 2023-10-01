@@ -235,7 +235,7 @@ const schema = defineSchema({
           ui: {
             timeFormat: "DD.MM.YYYY"
           },
-          required: true,
+          required: false,
         },
       ],
     },

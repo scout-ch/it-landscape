@@ -3,18 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tinacms dev -c \"next dev\"",
+    "dev": "tinacms dev -c \"astro dev\"",
+    "dev2": "astro dev",
     "build": "tinacms build && next build",
     "start": "tinacms build && next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@astrojs/react": "^3.0.2",
+    "astro": "^3.2.0",
+    "marked": "^9.0.3",
     "next": "^12.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
     "styled-components": "^5.1.3",
-    "tinacms": "^1.2.0"
+    "tinacms": "^1.5.0"
   },
   "devDependencies": {
     "@tinacms/cli": "^1.1.0",

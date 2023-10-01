@@ -11,6 +11,7 @@ involved_parties:
   - party: content/party/Olipo.yaml
     description: Developer
 last_updated: '2023-04-10T22:00:00.000Z'
+has_sla: false
 tech_stack:
   - stack_component: content/tech_stack/GitHub-pages.yaml
 lifecycle:

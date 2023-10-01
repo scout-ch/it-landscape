@@ -1,0 +1,47 @@
+---
+import { client } from "../../../../backend/.tina/__generated__/client.js"
+import { Debug } from 'astro:components'
+import Layout from "../../layouts/Layout.astro";
+
+const serviceResponse = await client.queries.serviceConnection()
+const services = serviceResponse.data.serviceConnection.edges?.map((service) => {
+  const l = service?.node?.lifecycle;
+
+  return {
+    id: service?.node?.id,
+    name: service?.node?.name,
+    status: l[l?.length -1].state,
+    lastUpdated: new Date(service?.node?.last_updated).toLocaleDateString('de'),
+  }
+});
+---
+
+<Layout title="Services">
+  <main class="container mx-auto p-5 text-lg">
+    <h1 class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800">
+      Services
+    </h1>
+    <table cellpadding="5">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Status</td>
+          <td>last updated</td>
+        </tr>
+      </thead>
+      {services?.map((service) => <tr>
+        <td> 
+          <a class="text-brombeer hover:underscore" href={`/it-landscape/services/${service.name}`}>
+                {service.name}
+              </a>
+          </td>
+          <td>
+            {service.status}
+          </td>
+          <td>
+            {service.lastUpdated}
+          </td>
+        </tr>) }
+    </table>
+  </main>
+</Layout>

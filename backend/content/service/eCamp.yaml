@@ -11,6 +11,7 @@ involved_parties:
     description: Contributor
   - party: content/party/Olipo.yaml
     description: Contributor
+has_sla: false
 tech_stack:
   - stack_component: content/tech_stack/Docker.yaml
 lifecycle:

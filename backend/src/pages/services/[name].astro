@@ -1,23 +1,25 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getServices, getParties } from "../../services/data";
+import { client } from "../../../../backend/.tina/__generated__/client.js"
 import { marked } from "marked";
+import { Debug } from 'astro:components'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+
+
 
 export async function getStaticPaths() {
-  const services = await getServices();
-  return Array.from(services.values()).map((service) => ({
+  const serviceResponse = await client.queries.serviceConnection()
+  return serviceResponse.data.serviceConnection.edges?.map((service) => ({
     params: {
-      id: service.id,
+      name: service?.node?.name
     },
-    props: {
-      service: service,
-    },
-  }));
+    props: { service: service?.node },
+  }))
+
 }
 
-const [services, parties] = await Promise.all([getServices(), getParties()]);
-const { id } = Astro.params;
-const { service } = Astro.props;
+
+const service = Astro.props.service
 ---
 
 <Layout title={service.name}>
@@ -33,7 +35,9 @@ const { service } = Astro.props;
           })
         }</span
       >
-      <div set:html={marked.parse(service.description)} />
+      <Debug values={service.description}></Debug>
+      <TinaMarkdown content={service.description}/>
+      <!-- <div set:html={marked.parse(service.description)} /> -->
 
       <dl class="mb-4 mt-3">
         <dt class="font-bold">Links</dt>
@@ -52,10 +56,10 @@ const { service } = Astro.props;
         </dd>
       </dl>
 
-      <dl class="mb-4 mt-3">
+      <!-- <dl class="mb-4 mt-3">
         <dt class="font-bold">Steckbrief</dt>
         <dd set:html={marked.parse(service.strategy_reference)} />
-      </dl>
+      </dl> -->
 
       <dl class="mb-4 mt-3">
         <dt class="font-bold">Abhängigkeiten</dt>
@@ -85,7 +89,7 @@ const { service } = Astro.props;
         <dt class="font-bold">Involvierte Parteien</dt>
         <dd>
           <ul class="list-disc ps-5">
-            {
+            <!-- {
               service.involved_parties?.map((involvedParty) => {
                 const party = parties.get(involvedParty.party);
                 return (
@@ -97,7 +101,7 @@ const { service } = Astro.props;
                   </li>
                 );
               })
-            }
+            } -->
           </ul>
         </dd>
       </dl>
