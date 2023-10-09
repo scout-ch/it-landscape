@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { client } from "../../../../backend/.tina/__generated__/client.js"
+import { client } from "../../../.tina/__generated__/client.js"
 import { marked } from "marked";
 import { Debug } from 'astro:components'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
@@ -65,7 +65,7 @@ const service = Astro.props.service
         <dt class="font-bold">Abhängigkeiten</dt>
         <dd>
           <ul class="list-disc ps-5">
-            {
+            <!-- {
               service.relations?.map((relation) => {
                 const relatedService = services.get(relation.service);
                 return (
@@ -80,7 +80,7 @@ const service = Astro.props.service
                   </li>
                 );
               })
-            }
+            } -->
           </ul>
         </dd>
       </dl>

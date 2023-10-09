@@ -13,12 +13,12 @@ export const Layout = (props) => {
         <meta name="description" content="A TinaCMS Application" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
+      {/* <header>
         <Link href="/">
           <a>Home</a>
         </Link>
       </header>
-      <main>{props.children}</main>
+      <main>{props.children}</main> */}
     </div>
   )
 }
