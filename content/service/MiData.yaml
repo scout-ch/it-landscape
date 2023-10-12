@@ -26,12 +26,13 @@ involved_parties:
   - party: content/party/Puzzle-ITC.yaml
     description: Supplier
 has_sla: true
-last_updated: '2023-09-08T22:00:00.000Z'
+last_updated: 2023-09-08T22:00:00.000Z
 tech_stack:
   - stack_component: content/tech_stack/Rails.yaml
 lifecycle:
   - state: in_production
-    date: '2016-01-01T00:00:00.000Z'
+    date: 2016-01-01T00:00:00.000Z
 criticality: high
 development: external
 additional_information: ''
+operations: external

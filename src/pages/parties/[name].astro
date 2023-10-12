@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { client } from "../../../.tina/__generated__/client.js"
+import { marked } from "marked";
+import { Debug } from 'astro:components'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { Party } from "../../../.tina/__generated__/types";
+
+export async function getStaticPaths() {
+  const partyResponse = await client.queries.partyConnection()
+  return partyResponse.data.partyConnection.edges?.map((party) => ({
+    params: {
+      name: party?.node?.name
+    },
+    props: { party: party?.node },
+  }))
+}
+
+
+const party: Party = Astro.props.party
+
+---
+
+<Layout title={party.name}>
+  <main class="container mx-auto py-10">
+    <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
+      <h1 class="text-5xl font-extrabold">{party.name}</h1>
+
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">PBS Number</dt>
+        <dd>
+          {party.pbsNumber}
+        </dd>
+      </dl>
+
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">type</dt>
+        <dd>
+          {party.type}
+        </dd>
+      </dl>
+    </article>
+  </main>
+</Layout>

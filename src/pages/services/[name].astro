@@ -4,8 +4,7 @@ import { client } from "../../../.tina/__generated__/client.js"
 import { marked } from "marked";
 import { Debug } from 'astro:components'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-
-
+import { ServiceRelations, ServiceLinks, ServiceInvolved_Parties, Service } from "../../../.tina/__generated__/types";
 
 export async function getStaticPaths() {
   const serviceResponse = await client.queries.serviceConnection()
@@ -15,11 +14,17 @@ export async function getStaticPaths() {
     },
     props: { service: service?.node },
   }))
-
 }
 
 
-const service = Astro.props.service
+const service: Service = Astro.props.service
+const relations = service!.relations?.map((relation: ServiceRelations) => {
+  return {
+    description: relation!.description,
+    name: relation!.service.name,
+    relation_criticality: relation!.relation_criticality
+  }
+})
 ---
 
 <Layout title={service.name}>
@@ -28,23 +33,50 @@ const service = Astro.props.service
       <h1 class="text-5xl font-extrabold">{service.name}</h1>
       <span class="block text-sm mb-3"
         >Leztes Update dieser Daten: {
-          new Date(service.last_updated).toLocaleDateString("de-CH", {
+          new Date(service.last_update).toLocaleDateString("de-CH", {
             year: "numeric",
             month: "long",
             day: "numeric",
           })
         }</span
       >
-      <Debug values={service.description}></Debug>
       <TinaMarkdown content={service.description}/>
-      <!-- <div set:html={marked.parse(service.description)} /> -->
-
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Criticality</dt>
+        <dd>
+          {service.criticality}
+        </dd>
+      </dl>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Product Owner</dt>
+        <dd>
+          {service.product_owner?.name}
+        </dd>
+      </dl>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Development</dt>
+        <dd>
+          {service.development}
+        </dd>
+      </dl>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Operations</dt>
+        <dd>
+          {service.operations}
+        </dd>
+      </dl>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">SLA</dt>
+        <dd>
+          {service.has_sla}
+        </dd>
+      </dl>
       <dl class="mb-4 mt-3">
         <dt class="font-bold">Links</dt>
         <dd>
           <ul class="list-disc ps-5">
             {
-              service.links.map((link) => (
+              service.links?.map((link: ServiceLinks) => (
                 <li>
                   <a class="text-brombeer hover:underline" href={link.url}>
                     {link.label}
@@ -56,23 +88,24 @@ const service = Astro.props.service
         </dd>
       </dl>
 
-      <!-- <dl class="mb-4 mt-3">
+      <dl class="mb-4 mt-3">
         <dt class="font-bold">Steckbrief</dt>
-        <dd set:html={marked.parse(service.strategy_reference)} />
-      </dl> -->
+        <dd>
+          <TinaMarkdown content={service.strategy_reference}/>
+        </dd>
+      </dl>
 
       <dl class="mb-4 mt-3">
         <dt class="font-bold">Abhängigkeiten</dt>
         <dd>
           <ul class="list-disc ps-5">
-            <!-- {
-              service.relations?.map((relation) => {
-                const relatedService = services.get(relation.service);
+            {
+              relations?.map((relation) => {
                 return (
                   <li>
                     {relation.description}:{" "}
-                    <a class="text-brombeer hover:underline" href={`/it-landscape/services/${relatedService.id}`}>
-                      {relatedService.name}
+                    <a class="text-brombeer hover:underline" href={`/it-landscape/services/${relation.name}`}>
+                      {relation.name}{" "}
                     </a>
                     <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
                       {relation.relation_criticality}
@@ -80,7 +113,7 @@ const service = Astro.props.service
                   </li>
                 );
               })
-            } -->
+            }
           </ul>
         </dd>
       </dl>
@@ -89,19 +122,18 @@ const service = Astro.props.service
         <dt class="font-bold">Involvierte Parteien</dt>
         <dd>
           <ul class="list-disc ps-5">
-            <!-- {
-              service.involved_parties?.map((involvedParty) => {
-                const party = parties.get(involvedParty.party);
+            {
+              service.involved_parties?.map((involvedParty: ServiceInvolved_Parties) => {
                 return (
                   <li>
                     {involvedParty.description}:{" "}
-                    <a class="text-brombeer hover:underline" href={`/it-landscape/parties/${party.id}`}>
-                      {party.name}
+                    <a class="text-brombeer hover:underline" href={`/it-landscape/parties/${involvedParty.party.name}`}>
+                      {involvedParty.party.name}
                     </a>
                   </li>
                 );
               })
-            } -->
+            }
           </ul>
         </dd>
       </dl>

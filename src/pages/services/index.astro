@@ -5,12 +5,14 @@ import Layout from "../../layouts/Layout.astro";
 
 const serviceResponse = await client.queries.serviceConnection()
 const services = serviceResponse.data.serviceConnection.edges?.map((service) => {
-  const l = service?.node?.lifecycle;
+  const lifecycle = service?.node?.lifecycle;
+  const productOwner = service?.node?.product_owner?.name;
 
   return {
     id: service?.node?.id,
     name: service?.node?.name,
-    status: l[l?.length -1].state,
+    status: lifecycle[lifecycle?.length -1].state,
+    product_owner: productOwner,
     lastUpdated: new Date(service?.node?.last_updated).toLocaleDateString('de'),
   }
 });
@@ -26,6 +28,7 @@ const services = serviceResponse.data.serviceConnection.edges?.map((service) => 
         <tr>
           <td>Name</td>
           <td>Status</td>
+          <td>Product Owner</td>
           <td>last updated</td>
         </tr>
       </thead>
@@ -37,6 +40,9 @@ const services = serviceResponse.data.serviceConnection.edges?.map((service) => 
           </td>
           <td>
             {service.status}
+          </td>
+          <td>
+            {service.product_owner}
           </td>
           <td>
             {service.lastUpdated}

@@ -6,7 +6,8 @@ involved_parties:
   - party: content/party/Filou.yaml
     description: is interested in
 has_sla: false
-description: ''
+description: |
+  this is the description
 strategy_reference: ''
 relations:
   - service: content/service/MiData.yaml
@@ -15,12 +16,12 @@ relations:
 links:
   - url: 'https://hc.scout.ch'
     label: App production
-last_updated: '2023-03-22T23:00:00.000Z'
+last_updated: 2023-03-22T23:00:00.000Z
 tech_stack:
   - stack_component: content/tech_stack/Symfony.yaml
   - stack_component: content/tech_stack/Docker.yaml
   - stack_component: content/tech_stack/Angular.yaml
 lifecycle:
   - state: in_production
-    date: '2023-09-14T22:00:00.000Z'
+    date: 2023-09-14T22:00:00.000Z
 additional_information: ''
