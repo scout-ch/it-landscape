@@ -1,5 +1,43 @@
 ---
+import { client } from "../../.tina/__generated__/client.js"
+import { Debug } from 'astro:components'
 import Layout from "../layouts/Layout.astro";
+import { getServices } from "../../../src/services/data";
+
+const services = await getServices();
+const services2 = await client.queries.service({relativePath: 'eCamp.yaml'})
 ---
 
-<meta http-equiv="refresh" content="0; url=/it-landscape/services" />
+<Layout title="Services">
+  <main class="container mx-auto p-5 text-lg">
+    <h1 class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800">
+      Services
+    </h1>
+    <table cellpadding="5">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Status</td>
+          <td>last updated</td>
+        </tr>
+      </thead>$<Debug values={services2.data.service.has_sla}>
+      {
+        Array.from(services.values()).map((service) => (
+          <tr>
+            <td>
+              <a class="text-brombeer hover:underscore" href={`/it-landscape/services/${service.id}`}>
+                {service.name}
+              </a>
+            </td>
+            <td>
+              <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{service.lifecycle[service.lifecycle.length -1].state}</span>
+            </td>
+            <td>
+              {new Date(service.last_updated).toLocaleDateString('de')}
+            </td>
+          </tr>
+        ))
+      }
+    </table>
+  </main>
+</Layout>

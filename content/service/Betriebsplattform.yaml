@@ -1,0 +1,8 @@
+name: Betriebsplattform
+description: ''
+criticality: medium
+operations: external
+has_sla: false
+lifecycle:
+  - state: idea
+    date: 2022-12-31T23:00:00.000Z

@@ -1,38 +1,46 @@
-# PBS IT Landscape
+This is a [Tina CMS](https://tina.io/) project.
 
-## 🚀 Project Structure
+## Local Development
 
-Inside of this project, you'll see the following folders and files:
+Install the project's dependencies:
 
 ```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+npm install
 ```
 
-For this project we are using Astro.Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Run the project locally:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```
+npm run dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+Open [http://localhost:4321](http://localhost:3000) with your browser to see the result.
 
-## 🧞 Commands
+Admin URL: [http://localhost:3000/it-landscape/admin/index.html](http://localhost:3000/it-landscape/admin/index.html)
 
-All commands are run from the root of the project, from a terminal:
+### Building the Starter Locally (Using the hosted content API)
 
-| Command                 | Action                                           |
-| :---------------------- | :----------------------------------------------- |
-| `yarn install`          | Installs dependencies                            |
-| `yarn run dev`          | Starts local dev server at `localhost:3000`      |
-| `yarn run build`        | Build your production site to `./dist/`          |
-| `yarn run preview`      | Preview your build locally, before deploying     |
-| `yarn run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `yarn run astro --help` | Get help using the Astro CLI                     |
+Replace the `.env.example`, with `.env`
+
+```
+NEXT_PUBLIC_TINA_CLIENT_ID=<get this from the project you create at app.tina.io>
+TINA_TOKEN=<get this from the project you create at app.tina.io>
+NEXT_PUBLIC_TINA_BRANCH=<Specify the branch with Tina configured>
+```
+
+Build the project:
+
+```bash
+npm run build
+```
+
+## Learn More
+
+To learn more about Tina, take a look at the following resources:
+
+- [Tina Docs](https://tina.io/docs)
+- [Getting starter guide](https://tina.io/guides/tina-cloud/starter/overview/)
+
+You can check out [Tina Github repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
+
+## [Deploy on Vercel](https://tina.io/guides/tina-cloud/add-tinacms-to-existing-site/deployment/)

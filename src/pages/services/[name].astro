@@ -1,0 +1,199 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { client } from "../../../.tina/__generated__/client.js"
+import { marked } from "marked";
+import { Debug } from 'astro:components'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { ServiceRelations, ServiceLinks, ServiceInvolved_Parties, Service, ServiceConnectionEdges, ServiceConnection, Maybe, ServiceLifecycle } from "../../../.tina/__generated__/types";
+
+export async function getStaticPaths() {
+  const serviceResponse = await client.queries.serviceConnection()
+  // @ts-ignore
+  const serviceEdges: ServiceConnectionEdges[] = serviceResponse.data.serviceConnection.edges || []
+  
+  return serviceEdges.map((service: ServiceConnectionEdges) => ({
+    params: {
+      name: service.node?.name
+    },
+    props: { service: service.node },
+  }))
+}
+
+
+const service: Service = Astro.props.service
+
+const serviceRelations: Maybe<ServiceRelations>[] = service.relations || []
+const relations = serviceRelations.filter(function(relation: Maybe<ServiceRelations>){
+  return relation != null
+}).map((relation: Maybe<ServiceRelations>) => {
+  if (relation) {
+    return {
+      description: relation.description,
+      name: relation.service.name,
+      relation_criticality: relation.relation_criticality
+    }
+  }
+})
+
+const serviceLinks: Maybe<ServiceLinks>[] = service.links || []
+const links = serviceLinks.filter(function(link: Maybe<ServiceLinks>){
+  return link != null
+}).map((link: Maybe<ServiceLinks>) => {
+  if (link) {
+    return {
+      url: link.url,
+      label: link.label,
+    }
+  }
+})
+
+const serviceInvolvedParties: Maybe<ServiceInvolved_Parties>[] = service.involved_parties || []
+const involvedParties = serviceInvolvedParties.filter(function(party: Maybe<ServiceInvolved_Parties>){
+  return party != null
+}).map((party: Maybe<ServiceInvolved_Parties>) => {
+  if (party) {
+    return {
+      name: party.party.name,
+      description: party.description,
+    }
+  }
+})
+
+const serviceLifecycle: Maybe<ServiceLifecycle>[] = service.lifecycle || []
+const lifecycles = serviceLifecycle.filter(function(life: Maybe<ServiceLifecycle>){
+  return life != null
+}).map((life: Maybe<ServiceLifecycle>) => {
+  if (life) {
+    return {
+      state: life.state,
+      date: new Date(life.date).toLocaleDateString("de-CH"),
+    }
+  }
+})
+
+const lastUpdatedValue: string = service.last_updated ? new Date(service.last_updated).toLocaleDateString('de') : 'unknown'
+
+---
+
+<Layout title={service.name}>
+  <main class="container mx-auto py-10">
+    <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
+      <h1 class="text-5xl font-extrabold">{service.name}</h1>
+      <span class="block text-sm mb-3"
+        >Leztes Update dieser Daten: {lastUpdatedValue}</span
+      >
+      <TinaMarkdown content={service.description}/>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Criticality</dt>
+        <dd>
+          {service.criticality}
+        </dd>
+      </dl>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Product Owner</dt>
+        <dd>
+          {service.product_owner?.name}
+        </dd>
+      </dl>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Development</dt>
+        <dd>
+          {service.development}
+        </dd>
+      </dl>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Operations</dt>
+        <dd>
+          {service.operations}
+        </dd>
+      </dl>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">SLA</dt>
+        <dd>
+          {service.has_sla ? 'true' : 'false'}
+        </dd>
+      </dl>
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Links</dt>
+        <dd>
+          <ul class="list-disc ps-5">
+            {
+              links.map((link) => (
+                <li>
+                  <a class="text-brombeer hover:underline" href={link!.url} target="_blank">
+                    {link!.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </dd>
+      </dl>
+
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Steckbrief</dt>
+        <dd>
+          <TinaMarkdown content={service.strategy_reference}/>
+        </dd>
+      </dl>
+
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Abhängigkeiten</dt>
+        <dd>
+          <ul class="list-disc ps-5">
+            {
+              relations.map((relation) => {
+                return (
+                  <li>
+                    {relation!.description}:{" "}
+                    <a class="text-brombeer hover:underline" href={`/it-landscape/services/${relation!.name}`}>
+                      {relation!.name}{" "}
+                    </a>
+                    <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
+                      {relation!.relation_criticality}
+                    </span>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </dd>
+      </dl>
+
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Involvierte Parteien</dt>
+        <dd>
+          <ul class="list-disc ps-5">
+            {
+              involvedParties.map((involvedParty) => {
+                return (
+                  <li>
+                    {involvedParty!.description}:{" "}
+                    <a class="text-brombeer hover:underline" href={`/it-landscape/parties/${involvedParty!.name}`}>
+                      {involvedParty!.name}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </dd>
+      </dl>
+
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">Lifecycle</dt>
+        <dd>
+          <ul class="list-disc ps-5">
+            {
+              lifecycles.map((lifecycle) => {
+                return (
+                  <li>{lifecycle!.date}:{" "}{lifecycle?.state}</li>
+                );
+              })
+            }
+          </ul>
+        </dd>
+      </dl>
+    </article>
+  </main>
+</Layout>

@@ -1,0 +1,38 @@
+name: MiData
+description: |
+  Mitgliederdatenbank der PBS
+strategy_reference: |
+  Steckbrief
+
+  * 7.1 Optimierung MiData
+
+  Operative Tätigkeiten
+
+  * 7.1.2 Audit MiData
+  * 7.1.3 Weiterentwicklung MiData
+product_owner: content/party/Safari.yaml
+links:
+  - url: 'https://db.scout.ch'
+    label: App production
+  - url: 'https://pbs.puzzle.ch'
+    label: MiData Testsystem
+  - url: 'https://github.com/hitobito/hitobito_pbs'
+    label: Github Repository
+involved_parties:
+  - party: content/party/ITKom.yaml
+    description: Begleitung
+  - party: content/party/Team-MiData.yaml
+    description: Commission
+  - party: content/party/Puzzle-ITC.yaml
+    description: Supplier
+has_sla: true
+last_updated: 2023-09-08T22:00:00.000Z
+tech_stack:
+  - stack_component: content/tech_stack/Rails.yaml
+lifecycle:
+  - state: in_production
+    date: 2016-01-01T00:00:00.000Z
+criticality: high
+development: external
+additional_information: ''
+operations: external

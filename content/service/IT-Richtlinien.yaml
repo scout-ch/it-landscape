@@ -1,0 +1,21 @@
+name: IT-Richtlinien
+description: ''
+criticality: low
+product_owner: content/party/Filou.yaml
+development: internal
+operations: external
+links:
+  - url: 'https://scout-ch.github.io/it-guidelines/'
+    label: IT-Richtlinien
+  - url: 'https://github.com/scout-ch/it-guidelines'
+    label: Github Repo
+has_sla: false
+strategy_reference: ''
+additional_information: ''
+lifecycle:
+  - state: in_production
+    date: 2021-05-17T22:00:00.000Z
+last_updated: 2023-11-17T23:00:00.000Z
+involved_parties:
+  - party: content/party/ITKom.yaml
+    description: Unterhalt / Betrieb

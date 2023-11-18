@@ -1,0 +1,25 @@
+name: Hering
+description: ''
+criticality: medium
+strategy_reference: ''
+product_owner: content/party/Folletta.yaml
+development: internal
+operations: betriebsplattform
+links:
+  - url: hering.scout.ch
+    label: Hering App
+  - url: hering-api.herokuapp.com/
+    label: Hering API
+  - url: 'https://github.com/scout-ch/hering-api'
+    label: Github Repo API
+  - url: 'https://github.com/scout-ch/hering'
+    label: Githup Repo App
+has_sla: false
+additional_information: ''
+involved_parties:
+  - party: content/party/Geschftsstelle-PBS-.yaml
+    description: Inhaltliche Verantwortung
+  - party: content/party/Folletta.yaml
+    description: Umsetzung
+  - party: content/party/ITKom.yaml
+    description: technische Betreuung
