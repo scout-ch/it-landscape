@@ -110,7 +110,7 @@ const lastUpdatedValue: string = service.last_updated ? new Date(service.last_up
       <dl class="mb-4 mt-3">
         <dt class="font-bold">SLA</dt>
         <dd>
-          {service.has_sla}
+          {service.has_sla ? 'true' : 'false'}
         </dd>
       </dl>
       <dl class="mb-4 mt-3">
@@ -120,7 +120,7 @@ const lastUpdatedValue: string = service.last_updated ? new Date(service.last_up
             {
               links.map((link) => (
                 <li>
-                  <a class="text-brombeer hover:underline" href={link!.url}>
+                  <a class="text-brombeer hover:underline" href={link!.url} target="_blank">
                     {link!.label}
                   </a>
                 </li>
