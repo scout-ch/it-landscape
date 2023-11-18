@@ -6,16 +6,18 @@ links:
   - url: 'https://scout-ch.github.io/it-landscape'
     label: Recursion
 involved_parties:
-  - party: content/party/Filou.yaml
-    description: Developer
-  - party: content/party/Olipo.yaml
-    description: Developer
-last_updated: '2023-04-10T22:00:00.000Z'
+  - party: content/party/ITKom.yaml
+    description: Owner
+last_updated: 2023-04-10T22:00:00.000Z
 has_sla: false
 tech_stack:
   - stack_component: content/tech_stack/GitHub-pages.yaml
 lifecycle:
+  - state: idea
+    date: 2023-01-06T23:00:00.000Z
   - state: in_progress
-    date: '2023-09-04T22:00:00.000Z'
+    date: 2023-09-04T22:00:00.000Z
 additional_information: ''
 product_owner: content/party/Folletta.yaml
+criticality: low
+development: internal

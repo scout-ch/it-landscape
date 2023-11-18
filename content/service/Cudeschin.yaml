@@ -1,0 +1,18 @@
+name: Cudeschin
+description: |
+  Digitalisierung der cudeschin Inhalte als PWA.
+criticality: low
+strategy_reference: |
+  abgeschlossen
+development: internal
+links:
+  - url: 'https://cudeschin.pbs.ch/'
+    label: Cudeschin App
+  - url: 'https://github.com/scout-ch/cudeschin'
+    label: Github
+has_sla: false
+product_owner: content/party/Kodack.yaml
+additional_information: ''
+involved_parties:
+  - party: content/party/AKom--CoFor--CommForm.yaml
+    description: Betreuung

@@ -1,0 +1,26 @@
+name: Thilo
+description: |
+  Pfaditechnikbuch mit Webapp der PBS
+criticality: medium
+strategy_reference: |
+  PIT 2024 -2026 KA AuB (AKom)
+development: external
+links:
+  - url: 'https://scout-ch.github.io/thilo/#/'
+    label: Testsystem
+  - url: 'https://github.com/scout-ch/thilo-api'
+    label: Github Repo API
+  - url: 'https://github.com/scout-ch/thilo'
+    label: Github Repo App
+involved_parties:
+  - party: content/party/ITKom.yaml
+    description: Betreuung
+has_sla: false
+additional_information: ''
+lifecycle:
+  - state: planned
+    date: 2022-12-31T23:00:00.000Z
+tech_stack:
+  - stack_component: content/tech_stack/React.yaml
+  - stack_component: content/tech_stack/Nodejs.yaml
+last_updated: 2023-11-17T23:00:00.000Z

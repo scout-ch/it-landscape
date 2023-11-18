@@ -1,0 +1,28 @@
+name: PBS Portal
+description: |
+  Absprung in die digitale Pfadiwelt
+criticality: low
+strategy_reference: |
+  abgeschlossen
+development: external
+operations: external
+links:
+  - url: 'https://github.com/scout-ch/Portal'
+    label: Github Repository
+has_sla: false
+relations:
+  - service: content/service/MiData.yaml
+    description: oAuth
+    relation_criticality: critically_depends_on
+involved_parties:
+  - party: content/party/Qube.yaml
+    description: Entwicklung
+  - party: content/party/ITKom.yaml
+    description: Betreuung
+additional_information: ''
+tech_stack:
+  - stack_component: content/tech_stack/Java.yaml
+lifecycle:
+  - state: in_production
+    date: 2023-01-05T23:00:00.000Z
+last_updated: 2023-11-17T23:00:00.000Z

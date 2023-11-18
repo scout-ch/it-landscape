@@ -1,0 +1,5 @@
+name: Cudesch digital
+has_sla: false
+lifecycle:
+  - state: planned
+    date: 2022-12-31T23:00:00.000Z
