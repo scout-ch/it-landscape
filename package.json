@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev & astro dev\"",
-    "tina": "tinacms dev -c \"next dev & astro dev\"",
-    "build": "tinacms build && next build",
+    "build-astro": "astro build",
+    "build": "tinacms build && next build && astro build",
     "start": "tinacms build && next start",
     "lint": "next lint"
   },

@@ -23,32 +23,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: 'yarn'
+          node-version: 20
+          cache: 'npm'
       - name: Install and build astro
         shell: 'bash'
-        run: |
-          yarn
-          yarn build
-      # - name: Install, build, and upload your site
-      #  uses: withastro/action@v0
-        # with:
-            # path: . # The root location of your Astro project inside the repository. (optional)
-            # node-version: 16 # The specific version of Node that should be used to build your site. Defaults to 16. (optional)
-            # package-manager: yarn # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
-      - name: Install TinaCMS
-        working-directory: backend
-        run: npm ci
-      - name: Build TinaCMS
-        working-directory: backend
         env:
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           NEXT_PUBLIC_TINA_BRANCH: main
-        run: npx tinacms build
+        run: |
+          npm install
+          npm run build
       - name: Copy TinaCMS artifacts
         run: |
-          cp -R ./backend/public/it-landscape/admin/ ./dist/
+          cp -R ./public/it-landscape/admin/ ./dist/
           rm ./dist/admin/.gitignore
       - name: Create Pages Artifact
         uses: actions/upload-pages-artifact@v1
