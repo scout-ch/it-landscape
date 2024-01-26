@@ -27,17 +27,9 @@ jobs:
           cache: 'npm'
       - name: Install and build astro
         shell: 'bash'
-        env:
-          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
-          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          NEXT_PUBLIC_TINA_BRANCH: main
         run: |
           npm install
-          npm run build
-      - name: Copy TinaCMS artifacts
-        run: |
-          cp -R ./public/it-landscape/admin/ ./dist/
-          rm ./dist/admin/.gitignore
+          npm run build-astro
       - name: Create Pages Artifact
         uses: actions/upload-pages-artifact@v1
         with:

@@ -1,11 +1,26 @@
 ---
 import { client } from "../../.tina/__generated__/client.js"
-import { Debug } from 'astro:components'
 import Layout from "../layouts/Layout.astro";
-import { getServices } from "../../../src/services/data";
+import { Service, ServiceConnectionEdges } from "../../.tina/__generated__/types";
 
-const services = await getServices();
-const services2 = await client.queries.service({relativePath: 'eCamp.yaml'})
+const serviceResponse = await client.queries.serviceConnection()
+  // @ts-ignore
+const serviceEdges: ServiceConnectionEdges[] = serviceResponse.data.serviceConnection.edges || []
+
+const services = serviceEdges.map((service: ServiceConnectionEdges) => {
+  const lifecycle = service.node?.lifecycle || [];
+  const length: number = lifecycle?.length || 0
+  const productOwner = service.node?.product_owner?.name;
+  const dateString: string = service.node?.last_updated ? new Date(service.node?.last_updated).toLocaleDateString('de') : 'unknown'
+
+  return {
+    id: service.node?.id,
+    name: service.node?.name,
+    status: lifecycle[length -1]?.state,
+    product_owner: productOwner,
+    lastUpdated: dateString,
+  }
+});
 ---
 
 <Layout title="Services">
@@ -18,26 +33,26 @@ const services2 = await client.queries.service({relativePath: 'eCamp.yaml'})
         <tr>
           <td>Name</td>
           <td>Status</td>
+          <td>Product Owner</td>
           <td>last updated</td>
         </tr>
-      </thead>$<Debug values={services2.data.service.has_sla}>
-      {
-        Array.from(services.values()).map((service) => (
-          <tr>
-            <td>
-              <a class="text-brombeer hover:underscore" href={`/it-landscape/services/${service.id}`}>
+      </thead>
+      {services?.map((service) => <tr>
+        <td> 
+          <a class="text-brombeer hover:underscore" href={`/it-landscape/services/${service.name}`}>
                 {service.name}
               </a>
-            </td>
-            <td>
-              <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{service.lifecycle[service.lifecycle.length -1].state}</span>
-            </td>
-            <td>
-              {new Date(service.last_updated).toLocaleDateString('de')}
-            </td>
-          </tr>
-        ))
-      }
+          </td>
+          <td>
+           <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{service.status}</span>
+          </td>
+          <td>
+            {service.product_owner}
+          </td>
+          <td>
+            {service.lastUpdated}
+          </td>
+        </tr>) }
     </table>
   </main>
 </Layout>

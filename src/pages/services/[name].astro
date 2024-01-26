@@ -1,8 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { client } from "../../../.tina/__generated__/client.js"
-import { marked } from "marked";
-import { Debug } from 'astro:components'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { ServiceRelations, ServiceLinks, ServiceInvolved_Parties, Service, ServiceConnectionEdges, ServiceConnection, Maybe, ServiceLifecycle } from "../../../.tina/__generated__/types";
 
@@ -20,9 +18,8 @@ export async function getStaticPaths() {
 }
 
 
-const service: Service = Astro.props.service
-
-const serviceRelations: Maybe<ServiceRelations>[] = service.relations || []
+const service = Astro.props.service
+const serviceRelations: Maybe<ServiceRelations>[] = service?.relations || []
 const relations = serviceRelations.filter(function(relation: Maybe<ServiceRelations>){
   return relation != null
 }).map((relation: Maybe<ServiceRelations>) => {
@@ -35,7 +32,7 @@ const relations = serviceRelations.filter(function(relation: Maybe<ServiceRelati
   }
 })
 
-const serviceLinks: Maybe<ServiceLinks>[] = service.links || []
+const serviceLinks: Maybe<ServiceLinks>[] = service?.links || []
 const links = serviceLinks.filter(function(link: Maybe<ServiceLinks>){
   return link != null
 }).map((link: Maybe<ServiceLinks>) => {
@@ -47,7 +44,7 @@ const links = serviceLinks.filter(function(link: Maybe<ServiceLinks>){
   }
 })
 
-const serviceInvolvedParties: Maybe<ServiceInvolved_Parties>[] = service.involved_parties || []
+const serviceInvolvedParties: Maybe<ServiceInvolved_Parties>[] = service?.involved_parties || []
 const involvedParties = serviceInvolvedParties.filter(function(party: Maybe<ServiceInvolved_Parties>){
   return party != null
 }).map((party: Maybe<ServiceInvolved_Parties>) => {
@@ -59,7 +56,7 @@ const involvedParties = serviceInvolvedParties.filter(function(party: Maybe<Serv
   }
 })
 
-const serviceLifecycle: Maybe<ServiceLifecycle>[] = service.lifecycle || []
+const serviceLifecycle: Maybe<ServiceLifecycle>[] = service?.lifecycle || []
 const lifecycles = serviceLifecycle.filter(function(life: Maybe<ServiceLifecycle>){
   return life != null
 }).map((life: Maybe<ServiceLifecycle>) => {
@@ -71,46 +68,46 @@ const lifecycles = serviceLifecycle.filter(function(life: Maybe<ServiceLifecycle
   }
 })
 
-const lastUpdatedValue: string = service.last_updated ? new Date(service.last_updated).toLocaleDateString('de') : 'unknown'
+const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_updated).toLocaleDateString('de') : 'unknown'
 
 ---
 
-<Layout title={service.name}>
+<Layout title={service?.name || ""}>
   <main class="container mx-auto py-10">
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
-      <h1 class="text-5xl font-extrabold">{service.name}</h1>
+      <h1 class="text-5xl font-extrabold">{service?.name}</h1>
       <span class="block text-sm mb-3"
         >Letztes Update dieser Daten: {lastUpdatedValue}</span
       >
-      <TinaMarkdown content={service.description}/>
+      <TinaMarkdown content={service?.description}/>
       <dl class="mb-4 mt-3">
         <dt class="font-bold">Criticality</dt>
         <dd>
-          {service.criticality}
+          {service?.criticality}
         </dd>
       </dl>
       <dl class="mb-4 mt-3">
         <dt class="font-bold">Product Owner</dt>
         <dd>
-          {service.product_owner?.name}
+          {service?.product_owner?.name}
         </dd>
       </dl>
       <dl class="mb-4 mt-3">
         <dt class="font-bold">Development</dt>
         <dd>
-          {service.development}
+          {service?.development}
         </dd>
       </dl>
       <dl class="mb-4 mt-3">
         <dt class="font-bold">Operations</dt>
         <dd>
-          {service.operations}
+          {service?.operations}
         </dd>
       </dl>
       <dl class="mb-4 mt-3">
         <dt class="font-bold">SLA</dt>
         <dd>
-          {service.has_sla ? 'true' : 'false'}
+          {service?.has_sla ? 'true' : 'false'}
         </dd>
       </dl>
       <dl class="mb-4 mt-3">
@@ -133,7 +130,7 @@ const lastUpdatedValue: string = service.last_updated ? new Date(service.last_up
       <dl class="mb-4 mt-3">
         <dt class="font-bold">Steckbrief</dt>
         <dd>
-          <TinaMarkdown content={service.strategy_reference}/>
+          <TinaMarkdown content={service?.strategy_reference}/>
         </dd>
       </dl>
 
