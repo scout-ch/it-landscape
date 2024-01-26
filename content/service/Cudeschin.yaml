@@ -1,7 +1,7 @@
 name: Cudeschin
 description: |
   Digitalisierung der cudeschin Inhalte als PWA.
-criticality: low
+criticality: medium
 strategy_reference: |
   abgeschlossen
 development: internal
@@ -16,3 +16,6 @@ additional_information: ''
 involved_parties:
   - party: content/party/AKom--CoFor--CommForm.yaml
     description: Betreuung
+lifecycle:
+  - state: in_production
+    date: 2019-06-01T23:00:00.000Z
