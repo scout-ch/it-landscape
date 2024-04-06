@@ -4,7 +4,7 @@ on:
   # Trigger the workflow every time you push to the `main` branch
   # Using a different branch name? Replace `main` with your branch’s name
   push:
-    branches: [ main ]
+    branches: [ main, ewangler-fix-fix-cd ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -27,6 +27,10 @@ jobs:
           cache: 'npm'
       - name: Install and build astro
         shell: 'bash'
+        env:
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_BRANCH: main
         run: |
           npm install
           npm run build
