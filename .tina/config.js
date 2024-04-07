@@ -259,6 +259,13 @@ const schema = defineSchema({
       name: "party",
       path: "content/party",
       format: "yaml",
+      ui: {
+        filename: {
+          slugify: (values) => {
+            return `${values?.key?.replace(/ /g, '-')}`
+          },
+        },
+      },
       fields: [
         {
           type: "string",

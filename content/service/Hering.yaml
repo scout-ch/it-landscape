@@ -14,12 +14,21 @@ links:
     label: Github Repo API
   - url: 'https://github.com/scout-ch/hering'
     label: Githup Repo App
-has_sla: false
-additional_information: ''
 involved_parties:
+  - party: content/party/iScout.yaml
+    description: development
   - party: content/party/GSPBS.yaml
     description: Inhaltliche Verantwortung
   - party: content/party/Folletta.yaml
     description: Umsetzung
   - party: content/party/ITKom.yaml
     description: technische Betreuung
+has_sla: false
+lifecycle:
+  - state: in_production
+    date: 2022-02-27T23:00:00.000Z
+  - state: in_progress
+    date: 2021-12-31T23:00:00.000Z
+  - state: idea
+    date: 2021-08-31T22:00:00.000Z
+additional_information: ''
