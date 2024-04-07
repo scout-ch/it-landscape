@@ -1,7 +1,7 @@
 name: HealthCheck
 product_owner: ''
 involved_parties:
-  - party: content/party/BKom--CoEnc--CommAcc.yaml
+  - party: content/party/BKom.yaml
     description: Betreuung
 has_sla: true
 description: >

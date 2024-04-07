@@ -74,6 +74,9 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
 
 <Layout title={service?.name || ""}>
   <main class="container mx-auto py-10">
+    <a class="text-brombeer hover:underscore" href={'/it-landscape/'}>
+      back
+    </a>
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
       <h1 class="text-5xl font-extrabold">{service?.name}</h1>
       <span class="block text-sm mb-3"

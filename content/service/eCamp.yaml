@@ -20,7 +20,7 @@ strategy_reference: |
 involved_parties:
   - party: content/party/ITKom.yaml
     description: Betreuung
-  - party: content/party/Projektgruppe-Kurs--und-Lagerplanungstool.yaml
+  - party: content/party/eCampv3.yaml
     description: Betreuung
 has_sla: false
 tech_stack:

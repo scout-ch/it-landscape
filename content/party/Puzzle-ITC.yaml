@@ -1,4 +1,5 @@
-name: PuzzleITC
+key: PuzzleITC
+name: 'Puzzle ITC'
 type: organization
 links:
   - url: 'https://github.com/puzzle'

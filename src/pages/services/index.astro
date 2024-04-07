@@ -22,14 +22,22 @@ const services = serviceEdges.map((service: ServiceConnectionEdges) => {
   }
 });
 ---
+<style>
+   tr:nth-child(even) {
+    background-color: rgba(82, 29, 58, 0.2);
+  }
+</style>
 
 <Layout title="Services">
   <main class="container mx-auto p-5 text-lg">
     <h1 class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800">
       Services
     </h1>
-    <table cellpadding="5">
-      <thead>
+    <table cellpadding="7" class="w-full table-auto">
+      <thead style={{
+        fontWeight: 'bolder',
+        borderBottom: '2px solid',
+      }}>
         <tr>
           <td>Name</td>
           <td>Status</td>
@@ -40,11 +48,11 @@ const services = serviceEdges.map((service: ServiceConnectionEdges) => {
       {services?.map((service) => <tr>
         <td> 
           <a class="text-brombeer hover:underscore" href={`/it-landscape/services/${service.name}`}>
-                {service.name}
-              </a>
+            {service.name}
+          </a>
           </td>
           <td>
-            {service.status}
+           <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{service.status}</span>
           </td>
           <td>
             {service.product_owner}

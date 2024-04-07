@@ -14,7 +14,7 @@ has_sla: false
 product_owner: content/party/Kodack.yaml
 additional_information: ''
 involved_parties:
-  - party: content/party/AKom--CoFor--CommForm.yaml
+  - party: content/party/AKom.yaml
     description: Betreuung
 lifecycle:
   - state: in_production
