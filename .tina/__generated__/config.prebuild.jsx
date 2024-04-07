@@ -262,7 +262,14 @@ var schema = defineSchema({
       fields: [
         {
           type: "string",
-          label: "Name",
+          label: "Key",
+          name: "key",
+          isTitle: false,
+          required: true
+        },
+        {
+          type: "string",
+          label: "Names",
           name: "name",
           isTitle: true,
           required: true
