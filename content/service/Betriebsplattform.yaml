@@ -1,8 +1,12 @@
 name: Betriebsplattform
 description: ''
 criticality: medium
+strategy_reference: |
+  Projekt im Tagesgeschäft
 operations: external
 has_sla: false
 lifecycle:
   - state: idea
     date: 2022-12-31T23:00:00.000Z
+additional_information: ''
+last_updated: 2024-04-07T12:18:29.670Z

@@ -4,18 +4,19 @@ description: |
 criticality: medium
 strategy_reference: |
   abgeschlossen
+product_owner: content/party/Kodack.yaml
 development: internal
 links:
   - url: 'https://cudeschin.pbs.ch/'
     label: Cudeschin App
   - url: 'https://github.com/scout-ch/cudeschin'
     label: Github
-has_sla: false
-product_owner: content/party/Kodack.yaml
-additional_information: ''
 involved_parties:
   - party: content/party/AKom.yaml
     description: Betreuung
+has_sla: false
 lifecycle:
   - state: in_production
     date: 2019-06-01T23:00:00.000Z
+additional_information: ''
+last_updated: 2024-04-07T12:21:02.855Z

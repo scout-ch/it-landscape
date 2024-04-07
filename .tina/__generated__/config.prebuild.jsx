@@ -29,6 +29,14 @@ var schema = defineSchema({
       name: "service",
       path: "content/service",
       format: "yaml",
+      ui: {
+        beforeSubmit: async ({ form, cms, values }) => {
+          return {
+            ...values,
+            last_updated: (/* @__PURE__ */ new Date()).toISOString()
+          };
+        }
+      },
       fields: [
         {
           name: "name",
