@@ -1,22 +1,31 @@
-This is a [Tina CMS](https://tina.io/) project.
+# IT Landscape
+
+An overview of the IT projects of the Swiss Guide and Scout Movement.
+
+## Technology
+
+This project is made with [Tina CMS](https://tina.io/) and with [astro](https://astro.build/), with [tailwind](https://tailwindcss.com/).
 
 ## Local Development
 
 Install the project's dependencies:
 
 ```
-npm install
+yarn install
 ```
 
 Run the project locally:
 
 ```
-npm run dev
+yarn dev
 ```
 
-Open [http://localhost:4321](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:4321/it-landscape/](http://localhost:4321/it-landscape/) with your browser to see the result.
 
-Admin URL: [http://localhost:3000/it-landscape/admin/index.html](http://localhost:3000/it-landscape/admin/index.html)
+
+Admin URL: [http://localhost:4001/it-landscape/admin/index.html#/collections/service/~](http://localhost:4001/it-landscape/admin/index.html#/collections/service/~)
+
+if it starts reloading the page over and over again, open the menu and select a service, then it should stop.
 
 ### Building the Starter Locally (Using the hosted content API)
 
@@ -31,16 +40,9 @@ NEXT_PUBLIC_TINA_BRANCH=<Specify the branch with Tina configured>
 Build the project:
 
 ```bash
-npm run build
+yarn run tinacms build
 ```
 
-## Learn More
+#### Tina CMS App
 
-To learn more about Tina, take a look at the following resources:
-
-- [Tina Docs](https://tina.io/docs)
-- [Getting starter guide](https://tina.io/guides/tina-cloud/starter/overview/)
-
-You can check out [Tina Github repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
-
-## [Deploy on Vercel](https://tina.io/guides/tina-cloud/add-tinacms-to-existing-site/deployment/)
+To configure the Tina CMS and for troubleshooting with the build (sometimes it needs a reindex of the branch that is configured) go to the [Tina App](https://app.tina.io/projects/1f372132-ef1c-4d76-914d-8f9e92d12b21/overview). Here you can also find or generate new tokens for local development. We are on a free plan so only two users are allowed. At the moment it's Olipo and Folletta that have  a user.
