@@ -74,7 +74,7 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
 
 <Layout title={service?.name || ""}>
   <main class="container mx-auto py-10">
-    <a class="text-brombeer hover:underscore" href={'/it-landscape/'}>
+    <a class="text-brombeer underline hover:font-medium" href={'/it-landscape/services/'}>
       back
     </a>
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
@@ -83,37 +83,52 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         >Letztes Update dieser Daten: {lastUpdatedValue}</span
       >
       <TinaMarkdown content={service?.description}/>
-      <dl class="mb-4 mt-3">
-        <dt class="font-bold">Criticality</dt>
+
+      <div class="columns-3 mt-3 gap-1">
+        <dl>
+          <dt class="font-bold">Criticality</dt>
+          <dd>
+            <span class:list={['px-1.5', 'py-0.5', 'rounded', {'bg-red-200': service?.criticality == 'high'}, 
+                              {'bg-orange-200': service?.criticality == 'medium'},
+                              {'bg-yellow-200': service?.criticality == 'low'},]}>
+              {service?.criticality || '-'}
+            </span>
+          </dd>
+        </dl>
+        <dl>
+          <dt class="font-bold">Product Owner</dt>
+          <dd>
+            {service?.product_owner?.name || '-'}
+          </dd>
+        </dl>
+        <dl>
+          <dt class="font-bold">Development</dt>
+          <dd>
+            {service?.development || '-'}
+          </dd>
+        </dl>
+        <dl>
+          <dt class="font-bold">Operations</dt>
+          <dd>
+            {service?.operations || '-'}
+          </dd>
+        </dl>
+        <dl >
+          <dt class="font-bold">SLA</dt>
+          <dd>
+            {service?.has_sla ? 'true' : 'false'}
+          </dd>
+        </dl>
+      </div>
+
+      <dl class="mt-3">
+        <dt class="font-bold">Steckbrief</dt>
         <dd>
-          {service?.criticality}
+          <TinaMarkdown content={service?.strategy_reference}/>
         </dd>
       </dl>
-      <dl class="mb-4 mt-3">
-        <dt class="font-bold">Product Owner</dt>
-        <dd>
-          {service?.product_owner?.name}
-        </dd>
-      </dl>
-      <dl class="mb-4 mt-3">
-        <dt class="font-bold">Development</dt>
-        <dd>
-          {service?.development}
-        </dd>
-      </dl>
-      <dl class="mb-4 mt-3">
-        <dt class="font-bold">Operations</dt>
-        <dd>
-          {service?.operations}
-        </dd>
-      </dl>
-      <dl class="mb-4 mt-3">
-        <dt class="font-bold">SLA</dt>
-        <dd>
-          {service?.has_sla ? 'true' : 'false'}
-        </dd>
-      </dl>
-      <dl class="mb-4 mt-3">
+
+      <dl class="mt-3">
         <dt class="font-bold">Links</dt>
         <dd>
           <ul class="list-disc ps-5">
@@ -127,13 +142,6 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
               ))
             }
           </ul>
-        </dd>
-      </dl>
-
-      <dl class="mb-4 mt-3">
-        <dt class="font-bold">Steckbrief</dt>
-        <dd>
-          <TinaMarkdown content={service?.strategy_reference}/>
         </dd>
       </dl>
 
@@ -187,7 +195,16 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
             {
               lifecycles.map((lifecycle) => {
                 return (
-                  <li>{lifecycle!.date}:{" "}{lifecycle?.state}</li>
+                  <li>
+                    {lifecycle!.date}:{" "}
+                    <span class:list={['px-1.5', 'py-0.5', 'rounded', 'text-xs', 
+                              {'bg-green-200': lifecycle?.state == 'in_production'}, 
+                              {'bg-orange-200': lifecycle?.state == 'in_progress'},
+                              {'bg-yellow-200': lifecycle?.state == 'planned'},
+                              {'bg-yellow-200': lifecycle?.state == 'idea'}]}>
+                              {lifecycle?.state}
+                    </span>
+                  </li>
                 );
               })
             }
@@ -195,5 +212,8 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         </dd>
       </dl>
     </article>
+    <a class="text-brombeer underline hover:font-medium" href={'/it-landscape/services/'}>
+      back
+    </a>
   </main>
 </Layout>

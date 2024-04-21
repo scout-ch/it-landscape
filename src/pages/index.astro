@@ -52,7 +52,13 @@ const services = serviceEdges.map((service: ServiceConnectionEdges) => {
           </a>
           </td>
           <td>
-           <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{service.status}</span>
+            <span class:list={['px-1.5', 'py-0.5', 'rounded', 'text-xs', 
+                              {'bg-green-200': service.status == 'in_production'}, 
+                              {'bg-orange-200': service.status == 'in_progress'},
+                              {'bg-yellow-200': service.status == 'planned'},
+                              {'bg-yellow-200': service.status == 'idea'}]}>
+                              {service.status}
+            </span>
           </td>
           <td>
             {service.product_owner}
