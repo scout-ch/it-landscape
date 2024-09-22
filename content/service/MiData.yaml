@@ -1,6 +1,7 @@
 name: MiData
 description: |
   Mitgliederdatenbank der PBS
+criticality: high
 strategy_reference: |
   Steckbrief
 
@@ -10,7 +11,9 @@ strategy_reference: |
 
   * 7.1.2 Audit MiData
   * 7.1.3 Weiterentwicklung MiData
-product_owner: content/party/Safari.yaml
+product_owner: content/party/Beppo.yaml
+development: external
+operations: external
 links:
   - url: 'https://db.scout.ch'
     label: App production
@@ -26,13 +29,10 @@ involved_parties:
   - party: content/party/Puzzle-ITC.yaml
     description: Supplier
 has_sla: true
-last_updated: 2023-09-08T22:00:00.000Z
-tech_stack:
-  - stack_component: content/tech_stack/Rails.yaml
 lifecycle:
   - state: in_production
     date: 2016-01-01T00:00:00.000Z
-criticality: high
-development: external
+tech_stack:
+  - stack_component: content/tech_stack/Rails.yaml
 additional_information: ''
-operations: external
+last_updated: 2024-09-22T08:54:11.921Z
