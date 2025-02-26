@@ -1,0 +1,23 @@
+name: Twitterbox
+description: ''
+criticality: low
+strategy_reference: ''
+product_owner: content/party/gamschi.yaml
+development: internal
+operations: betriebsplattform
+links:
+  - url: 'https://twitterbox.tractor.scout.ch/'
+    label: Tool
+involved_parties:
+  - party: content/party/praevention.yaml
+    description: Auftraggeber
+  - party: content/party/Filou.yaml
+    description: developer
+has_sla: false
+lifecycle:
+  - state: in_progress
+    date: 2024-12-31T23:00:00.000Z
+tech_stack:
+  - stack_component: content/tech_stack/nextjs.yaml
+additional_information: ''
+last_updated: 2025-02-26T20:23:35.228Z

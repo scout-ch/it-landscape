@@ -1,0 +1,27 @@
+name: BSV PDF
+description: |
+  ist ein PDF für die GS um Abrechnung von BSV Kursen zu machen
+criticality: low
+strategy_reference: ''
+development: internal
+operations: external
+links:
+  - url: 'https://scout-ch.github.io/bsv_pdf/'
+    label: tool
+involved_parties:
+  - party: content/party/GSPBS.yaml
+    description: Benutzt
+  - party: content/party/Filou.yaml
+    description: developer
+has_sla: false
+relations:
+  - service: content/service/MiData.yaml
+    description: für daten import
+    relation_criticality: depends_on
+lifecycle:
+  - state: in_production
+    date: 2021-04-26T22:00:00.000Z
+tech_stack:
+  - stack_component: content/tech_stack/React.yaml
+additional_information: ''
+last_updated: 2025-02-26T20:14:36.301Z

@@ -1,0 +1,21 @@
+name: Digitale Kursadministration
+description: ''
+strategy_reference: ''
+development: external
+operations: external
+links:
+  - url: 'https://workflows.scout.ch/loginView'
+    label: tool
+has_sla: false
+relations:
+  - service: content/service/MiData.yaml
+    description: auth
+    relation_criticality: depends_on
+lifecycle:
+  - state: in_production
+    date: 2024-12-31T23:00:00.000Z
+additional_information: |
+  Entwicklung: codeblock gmbh
+
+  läuft auf appuio
+last_updated: 2025-02-26T19:07:20.653Z

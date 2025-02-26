@@ -1,10 +1,17 @@
 name: Cudesch digital
 description: ''
+criticality: medium
 strategy_reference: |
   Projekt 1.5.4 cudesch digital
+development: external
+operations: external
 has_sla: false
+relations:
+  - service: content/service/Hering.yaml
+    description: auch Strapi
+    relation_criticality: related_data
 lifecycle:
   - state: planned
     date: 2022-12-31T23:00:00.000Z
 additional_information: ''
-last_updated: 2024-04-07T12:20:10.740Z
+last_updated: 2025-02-26T20:13:45.983Z

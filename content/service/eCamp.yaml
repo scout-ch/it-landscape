@@ -1,14 +1,6 @@
 name: eCamp
 description: |
   digital camp planning for everyone
-product_owner: ''
-links:
-  - url: 'https://app.ecamp3.ch'
-    label: eCamp v3 App
-  - url: 'https://dev.ecamp3.ch/login'
-    label: Teststystem
-  - url: 'https://github.com/ecamp/ecamp3'
-    label: GitHub
 strategy_reference: |
   Steckbrief
 
@@ -17,24 +9,34 @@ strategy_reference: |
   Projekt 7.3.1:
 
   Kurs- und Lagerplanungstool "eCamp v3"
+development: external
+operations: external
+links:
+  - url: 'https://app.ecamp3.ch'
+    label: eCamp v3 App
+  - url: 'https://dev.ecamp3.ch/login'
+    label: Teststystem
+  - url: 'https://github.com/ecamp/ecamp3'
+    label: GitHub
 involved_parties:
   - party: content/party/ITKom.yaml
     description: Betreuung
   - party: content/party/eCampv3.yaml
     description: Betreuung
 has_sla: false
-tech_stack:
-  - stack_component: content/tech_stack/PHP.yaml
-  - stack_component: content/tech_stack/Vuejs.yaml
-lifecycle:
-  - state: in_progress
-    date: 2020-11-13T23:00:00.000Z
-  - state: planned
-    date: 2020-11-13T23:00:00.000Z
-additional_information: ''
-development: internal
 relations:
   - service: content/service/MiData.yaml
     description: oAuth
     relation_criticality: depends_on
-last_updated: 2023-11-17T23:00:00.000Z
+lifecycle:
+  - state: in_production
+    date: 2023-09-30T22:00:00.000Z
+  - state: in_progress
+    date: 2020-11-13T23:00:00.000Z
+  - state: planned
+    date: 2020-11-13T23:00:00.000Z
+tech_stack:
+  - stack_component: content/tech_stack/PHP.yaml
+  - stack_component: content/tech_stack/Vuejs.yaml
+additional_information: ''
+last_updated: 2025-02-26T18:40:10.699Z

@@ -1,6 +1,8 @@
 name: MiData
 description: |
   Mitgliederdatenbank der PBS
+
+  \+ Silverscouts DB
 criticality: high
 strategy_reference: |
   Steckbrief
@@ -11,7 +13,7 @@ strategy_reference: |
 
   * 7.1.2 Audit MiData
   * 7.1.3 Weiterentwicklung MiData
-product_owner: content/party/Beppo.yaml
+product_owner: content/party/scattle.yaml
 development: external
 operations: external
 links:
@@ -35,4 +37,4 @@ lifecycle:
 tech_stack:
   - stack_component: content/tech_stack/Rails.yaml
 additional_information: ''
-last_updated: 2024-09-22T08:54:11.921Z
+last_updated: 2025-02-26T20:21:49.836Z

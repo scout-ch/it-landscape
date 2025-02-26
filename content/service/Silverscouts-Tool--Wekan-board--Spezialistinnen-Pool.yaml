@@ -1,0 +1,20 @@
+name: Spezialistinnen Pool
+description: |2
+   / Silverscouts Tool / Wekan board
+strategy_reference: ''
+development: external
+operations: external
+links:
+  - url: 'https://wekan-pbs.agitos.de/'
+    label: tool
+has_sla: false
+relations:
+  - service: content/service/MiData.yaml
+    description: auth
+    relation_criticality: depends_on
+lifecycle:
+  - state: in_progress
+    date: 2024-10-31T23:00:00.000Z
+additional_information: |
+  vanilla opensource standard wekan
+last_updated: 2025-02-26T20:25:42.247Z
