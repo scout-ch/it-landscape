@@ -1,11 +1,16 @@
 name: Digitale Kursadministration
 description: ''
+criticality: high
 strategy_reference: ''
+product_owner: content/party/aurea.yaml
 development: external
 operations: external
 links:
   - url: 'https://workflows.scout.ch/loginView'
     label: tool
+involved_parties:
+  - party: content/party/codeblock.yaml
+    description: Entwicklung
 has_sla: false
 relations:
   - service: content/service/MiData.yaml
@@ -18,4 +23,4 @@ additional_information: |
   Entwicklung: codeblock gmbh
 
   läuft auf appuio
-last_updated: 2025-02-26T19:07:20.653Z
+last_updated: 2025-02-28T10:20:23.688Z

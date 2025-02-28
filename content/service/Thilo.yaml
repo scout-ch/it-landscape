@@ -4,9 +4,14 @@ description: |
 criticality: medium
 strategy_reference: |
   PIT 2024 -2026 KA AuB (AKom)
+product_owner: content/party/trick.yaml
 development: external
 operations: betriebsplattform
 links:
+  - url: 'https://api.thilo.scouts.ch/'
+    label: Backend
+  - url: thilo.scouts.ch
+    label: Frontend
   - url: 'https://scout-ch.github.io/thilo/#/'
     label: Testsystem
   - url: 'https://github.com/scout-ch/thilo-api'
@@ -18,6 +23,8 @@ involved_parties:
     description: Betreuung
 has_sla: false
 lifecycle:
+  - state: in_production
+    date: 2024-12-03T23:00:00.000Z
   - state: planned
     date: 2022-12-31T23:00:00.000Z
 tech_stack:
@@ -25,4 +32,4 @@ tech_stack:
   - stack_component: content/tech_stack/Nodejs.yaml
 additional_information: |
   entwicklung: privatperson
-last_updated: 2025-02-26T18:22:04.682Z
+last_updated: 2025-02-28T10:26:53.129Z

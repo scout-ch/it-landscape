@@ -1,0 +1,19 @@
+name: Silverscouts DB
+description: ''
+criticality: medium
+strategy_reference: ''
+product_owner: content/party/mica.yaml
+development: external
+operations: external
+links:
+  - url: 'https://db.scout.ch'
+    label: DB
+involved_parties:
+  - party: content/party/Puzzle-ITC.yaml
+    description: Entwicklung
+has_sla: false
+lifecycle:
+  - state: in_production
+    date: 2024-09-29T22:00:00.000Z
+additional_information: ''
+last_updated: 2025-02-28T10:28:14.574Z

@@ -1,7 +1,9 @@
 name: Spezialistinnen Pool
-description: |2
-   / Silverscouts Tool / Wekan board
+description: |
+  / Silverscouts Tool / Wekan board
+criticality: low
 strategy_reference: ''
+product_owner: content/party/mica.yaml
 development: external
 operations: external
 links:
@@ -17,4 +19,4 @@ lifecycle:
     date: 2024-10-31T23:00:00.000Z
 additional_information: |
   vanilla opensource standard wekan
-last_updated: 2025-02-26T20:25:42.247Z
+last_updated: 2025-02-28T10:16:37.009Z

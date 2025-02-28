@@ -3,6 +3,7 @@ description: |
   ist ein PDF für die GS um Abrechnung von BSV Kursen zu machen
 criticality: low
 strategy_reference: ''
+product_owner: content/party/aurea.yaml
 development: internal
 operations: external
 links:
@@ -24,4 +25,4 @@ lifecycle:
 tech_stack:
   - stack_component: content/tech_stack/React.yaml
 additional_information: ''
-last_updated: 2025-02-26T20:14:36.301Z
+last_updated: 2025-02-28T10:20:42.252Z

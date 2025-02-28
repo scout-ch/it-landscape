@@ -5,6 +5,7 @@ description: >
 criticality: medium
 strategy_reference: |
   Projekt 1.2.3 HealthCheck: Trends, Kartenerweiterung und Aggregation
+product_owner: content/party/papillon.yaml
 development: external
 operations: external
 links:
@@ -27,4 +28,4 @@ tech_stack:
   - stack_component: content/tech_stack/Angular.yaml
 additional_information: |
   Entwickler: digio.swiss
-last_updated: 2025-02-26T18:19:07.575Z
+last_updated: 2025-02-28T09:19:56.637Z

@@ -20,6 +20,7 @@ const services = serviceEdges.map((service: ServiceConnectionEdges) => {
     name: service.node?.name,
     status: lifecycle[0]?.state,
     product_owner: productOwner,
+    cirticality: service.node?.criticality,
     lastUpdated: dateString,
   }
 });
@@ -43,6 +44,7 @@ const services = serviceEdges.map((service: ServiceConnectionEdges) => {
         <tr>
           <td>Name</td>
           <td>Status</td>
+          <td>Cirticality</td>
           <td>Product Owner</td>
           <td>last updated</td>
         </tr>
@@ -61,6 +63,13 @@ const services = serviceEdges.map((service: ServiceConnectionEdges) => {
                               {'bg-yellow-200': service.status == 'idea'}]}>
                               {service.status}
             </span>
+          </td>
+          <td>
+            <span class:list={['px-1.5', 'py-0.5', 'rounded', 'text-xs', 
+                              {'bg-blue-200': service.cirticality == 'low'}, 
+                              {'bg-orange-200': service.cirticality == 'medium'},
+                              {'bg-red-400': service.cirticality == 'high'}]}>
+                            {service.cirticality}</span>
           </td>
           <td>
             {service.product_owner}
