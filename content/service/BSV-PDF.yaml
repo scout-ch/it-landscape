@@ -7,8 +7,10 @@ product_owner: content/party/aurea.yaml
 development: internal
 operations: external
 links:
+  - url: 'https://github.com/scout-ch/bsv_pdf'
+    label: Github Repository
   - url: 'https://scout-ch.github.io/bsv_pdf/'
-    label: tool
+    label: App Prod
 involved_parties:
   - party: content/party/GSPBS.yaml
     description: Benutzt
@@ -25,4 +27,4 @@ lifecycle:
 tech_stack:
   - stack_component: content/tech_stack/React.yaml
 additional_information: ''
-last_updated: 2025-02-28T10:20:42.252Z
+last_updated: 2025-03-02T11:44:13.475Z

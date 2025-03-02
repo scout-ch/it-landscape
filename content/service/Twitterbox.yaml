@@ -6,6 +6,8 @@ product_owner: content/party/gamschi.yaml
 development: internal
 operations: betriebsplattform
 links:
+  - url: 'https://github.com/scout-ch/twitterbox'
+    label: Github Repository
   - url: 'https://twitterbox.tractor.scout.ch/'
     label: Tool
 involved_parties:
@@ -20,4 +22,4 @@ lifecycle:
 tech_stack:
   - stack_component: content/tech_stack/nextjs.yaml
 additional_information: ''
-last_updated: 2025-02-26T20:23:35.228Z
+last_updated: 2025-03-02T11:45:05.339Z

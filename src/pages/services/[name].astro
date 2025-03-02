@@ -88,9 +88,9 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         <dl>
           <dt class="font-bold">Criticality</dt>
           <dd>
-            <span class:list={['px-1.5', 'py-0.5', 'rounded', {'bg-red-200': service?.criticality == 'high'}, 
+            <span class:list={['px-1.5', 'py-0.5', 'rounded', {'bg-red-400': service?.criticality == 'high'}, 
                               {'bg-orange-200': service?.criticality == 'medium'},
-                              {'bg-yellow-200': service?.criticality == 'low'},]}>
+                              {'bg-blue-200': service?.criticality == 'low'},]}>
               {service?.criticality || '-'}
             </span>
           </dd>

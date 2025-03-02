@@ -12,6 +12,8 @@ links:
   - url: 'https://hc.scout.ch'
     label: App production
 involved_parties:
+  - party: content/party/Digio-AG.yaml
+    description: Development
   - party: content/party/BKom.yaml
     description: Betreuung
 has_sla: true
@@ -26,6 +28,5 @@ tech_stack:
   - stack_component: content/tech_stack/Symfony.yaml
   - stack_component: content/tech_stack/Docker.yaml
   - stack_component: content/tech_stack/Angular.yaml
-additional_information: |
-  Entwickler: digio.swiss
-last_updated: 2025-02-28T09:19:56.637Z
+additional_information: ''
+last_updated: 2025-03-02T11:46:41.498Z

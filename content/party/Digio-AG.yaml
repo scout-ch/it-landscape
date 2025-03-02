@@ -1,3 +1,6 @@
+key: Digio AG
 name: Digio
-key: 'Digio AG'
 type: organization
+links:
+  - url: 'https://www.digio.swiss/'
+    label: Website
