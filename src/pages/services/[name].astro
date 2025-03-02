@@ -50,6 +50,7 @@ const involvedParties = serviceInvolvedParties.filter(function(party: Maybe<Serv
 }).map((party: Maybe<ServiceInvolved_Parties>) => {
   if (party) {
     return {
+      key: party.party.key,
       name: party.party.name,
       description: party.description,
     }
@@ -177,7 +178,7 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
                 return (
                   <li>
                     {involvedParty!.description}:{" "}
-                    <a class="text-brombeer hover:underline" href={`/it-landscape/parties/${involvedParty!.name}`}>
+                    <a class="text-brombeer hover:underline" href={`/it-landscape/parties/${involvedParty!.key}`}>
                       {involvedParty!.name}
                     </a>
                   </li>

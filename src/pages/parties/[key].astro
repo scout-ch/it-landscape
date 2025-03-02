@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const partyResponse = await client.queries.partyConnection()
   return partyResponse.data.partyConnection.edges?.map((party) => ({
     params: {
-      name: party?.node?.name
+      key: party?.node?.key
     },
     props: { party: party?.node },
   }))
