@@ -1,7 +1,0 @@
-owner_service: Midata
-attributes:
-  - name
-  - scout_name
-  - birth_date
-  - gender
-  - address
