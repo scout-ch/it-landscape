@@ -1,2 +1,15 @@
 ---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Search from "../components/Search";
+
+const services = await getCollection("service");
 ---
+
+<Layout title="Services">
+  <main class="container mx-auto p-5 text-lg">
+    <h1 class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800">Services</h1>
+
+    <Search client:load searchList={services} />
+  </main>
+</Layout>

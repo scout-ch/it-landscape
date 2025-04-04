@@ -4,18 +4,15 @@ import Layout from "../../layouts/Layout.astro";
 
 const services = await getCollection("service");
 ---
-
 <style>
-  tr:nth-child(even) {
+   tr:nth-child(even) {
     background-color: rgba(82, 29, 58, 0.2);
   }
 </style>
 
 <Layout title="Services">
   <main class="container mx-auto p-5 text-lg">
-    <h1
-      class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800"
-    >
+    <h1 class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800">
       Services
     </h1>
     <table class="w-full table-auto">
@@ -28,60 +25,39 @@ const services = await getCollection("service");
           <td>last updated</td>
         </tr>
       </thead>
-      {
-        services?.map((service) => {
-          const status = service.data.lifecycle?.[0]?.state;
-          return (
-            <tr>
-              <td class="p-3">
-                <a
-                  class="text-brombeer hover:underscore"
-                  href={`/it-landscape/services/${service.id}`}
-                >
-                  {service.data.name}
-                </a>
-              </td>
-              <td class="p-3">
-                <span
-                  class:list={[
-                    "px-1.5",
-                    "py-0.5",
-                    "rounded",
-                    "text-xs",
-                    { "bg-green-200": status == "in_production" },
-                    { "bg-orange-200": status == "in_progress" },
-                    { "bg-yellow-200": status == "planned" },
-                    { "bg-yellow-200": status == "idea" },
-                  ]}
-                >
-                  {status}
-                </span>
-              </td>
-              <td class="p-3">
-                <span
-                  class:list={[
-                    "px-1.5",
-                    "py-0.5",
-                    "rounded",
-                    "text-xs",
-                    { "bg-blue-200": service.data.criticality == "low" },
-                    { "bg-orange-200": service.data.criticality == "medium" },
-                    { "bg-red-400": service.data.criticality == "high" },
-                  ]}
-                >
-                  {service.data.criticality}
-                </span>
-              </td>
-              <td class="p-3">{service.data.product_owner}</td>
-              <td class="p-3">
-                {service.data.last_updated
-                  ? new Date(service.data.last_updated).toLocaleDateString("de")
-                  : "unknown"}
-              </td>
-            </tr>
-          );
-        })
-      }
+      {services?.map((service) => {
+        const status = service.data.lifecycle?.[0]?.state;
+        return (
+        <tr>
+        <td> 
+          <a class="text-brombeer hover:underscore" href={`/it-landscape/services/${service.id}`}>
+            {service.data.name}
+          </a>
+        </td>
+          <td>
+            <span class:list={['px-1.5', 'py-0.5', 'rounded', 'text-xs', 
+                              {'bg-green-200': status == 'in_production'}, 
+                              {'bg-orange-200': status == 'in_progress'},
+                              {'bg-yellow-200': status == 'planned'},
+                              {'bg-yellow-200': status == 'idea'}]}>
+                              {status}
+            </span>
+          </td>
+          <td>
+            <span class:list={['px-1.5', 'py-0.5', 'rounded', 'text-xs', 
+                              {'bg-blue-200': service.data.criticality == 'low'}, 
+                              {'bg-orange-200': service.data.criticality == 'medium'},
+                              {'bg-red-400': service.data.criticality == 'high'}]}>
+                            {service.data.criticality}</span>
+          </td>
+          <td>
+            {service.data.product_owner}
+          </td>
+          <td>
+            {service.data.last_updated ? new Date(service.data.last_updated).toLocaleDateString("de") : "unknown"}
+          </td>
+        </tr>)
+        }) }
     </table>
   </main>
 </Layout>
