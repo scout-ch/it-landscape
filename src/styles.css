@@ -1,0 +1,7 @@
+@import "tailwindcss";
+/* @plugin "@tailwindcss/typography"; */
+
+@theme {
+  --color-brombeer: #521d3a;
+  --color-gray: #f8f7f6;
+}

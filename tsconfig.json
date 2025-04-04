@@ -1,21 +1,19 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "incremental": true,
-    "moduleResolution": "node",
-    "jsx": "preserve"
+    // "lib": ["dom", "dom.iterable", "esnext"],
+    // "moduleResolution": "bundler",
+    // "incremental": true,
+    // "moduleResolution": "nodenext",
+    // "jsx": "preserve",
+    "strictNullChecks": true,
+    "allowJs": true
   },
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    ".astro/types.d.ts",
+    "**/*"
   ],
   "exclude": [
-    "node_modules"
+    "dist"
   ]
 }

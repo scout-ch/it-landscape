@@ -1,24 +1,18 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { client } from "../../../.tina/__generated__/client.js"
-import { marked } from "marked";
-import { Debug } from 'astro:components'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { Party } from "../../../.tina/__generated__/types";
 
 export async function getStaticPaths() {
-  const partyResponse = await client.queries.partyConnection()
-  return partyResponse.data.partyConnection.edges?.map((party) => ({
+  const parties = await getCollection("party");
+  return parties.map((party) => ({
     params: {
-      key: party?.node?.key
+      key: party.data.key,
     },
-    props: { party: party?.node },
-  }))
+    props: party.data,
+  }));
 }
 
-
-const party: Party = Astro.props.party
-
+const party = Astro.props;
 ---
 
 <Layout title={party.name}>

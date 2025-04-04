@@ -1,123 +1,70 @@
 ---
+import { getCollection, getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { client } from "../../../.tina/__generated__/client.js"
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { ServiceRelations, ServiceLinks, ServiceInvolved_Parties, Service, ServiceConnectionEdges, ServiceConnection, Maybe, ServiceLifecycle } from "../../../.tina/__generated__/types";
+import Markdown from "../../Markdown.astro";
+import { getEntries } from "astro:content";
 
 export async function getStaticPaths() {
-  const serviceResponse = await client.queries.serviceConnection()
-  // @ts-ignore
-  const serviceEdges: ServiceConnectionEdges[] = serviceResponse.data.serviceConnection.edges || []
-  
-  return serviceEdges.map((service: ServiceConnectionEdges) => ({
+  const services = await getCollection("service");
+
+  return services.map((service) => ({
     params: {
-      name: service.node?.name
+      name: service.id,
     },
-    props: { service: service.node },
-  }))
+    props: service.data,
+  }));
 }
 
-
-const service = Astro.props.service
-const serviceRelations: Maybe<ServiceRelations>[] = service?.relations || []
-const relations = serviceRelations.filter(function(relation: Maybe<ServiceRelations>){
-  return relation != null
-}).map((relation: Maybe<ServiceRelations>) => {
-  if (relation) {
-    return {
-      description: relation.description,
-      name: relation.service.name,
-      relation_criticality: relation.relation_criticality
-    }
-  }
-})
-
-const serviceLinks: Maybe<ServiceLinks>[] = service?.links || []
-const links = serviceLinks.filter(function(link: Maybe<ServiceLinks>){
-  return link != null
-}).map((link: Maybe<ServiceLinks>) => {
-  if (link) {
-    return {
-      url: link.url,
-      label: link.label,
-    }
-  }
-})
-
-const serviceInvolvedParties: Maybe<ServiceInvolved_Parties>[] = service?.involved_parties || []
-const involvedParties = serviceInvolvedParties.filter(function(party: Maybe<ServiceInvolved_Parties>){
-  return party != null
-}).map((party: Maybe<ServiceInvolved_Parties>) => {
-  if (party) {
-    return {
-      key: party.party.key,
-      name: party.party.name,
-      description: party.description,
-    }
-  }
-})
-
-const serviceLifecycle: Maybe<ServiceLifecycle>[] = service?.lifecycle || []
-const lifecycles = serviceLifecycle.filter(function(life: Maybe<ServiceLifecycle>){
-  return life != null
-}).map((life: Maybe<ServiceLifecycle>) => {
-  if (life) {
-    return {
-      state: life.state,
-      date: new Date(life.date).toLocaleDateString("de-CH"),
-    }
-  }
-})
-
-const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_updated).toLocaleDateString('de') : 'unknown'
-
+const service = Astro.props;
+const lastUpdated = new Date(service.last_updated).toLocaleDateString("de");
+const productOwner = service.product_owner && (await getEntry(service.product_owner));
+const relations = []; // service.relations && (await getEntries(service.relations));
+const involved_parties = []; //service.involved_parties && (await getEntries(service.involved_parties));
 ---
 
-<Layout title={service?.name || ""}>
+<Layout title={service.name}>
   <main class="container mx-auto py-10">
     <a class="text-brombeer underline hover:font-medium" href={'/it-landscape/services/'}>
       back
     </a>
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
-      <h1 class="text-5xl font-extrabold">{service?.name}</h1>
-      <span class="block text-sm mb-3"
-        >Letztes Update dieser Daten: {lastUpdatedValue}</span
-      >
-      <TinaMarkdown content={service?.description}/>
+      <h1 class="text-5xl font-extrabold">{service.name}</h1>
+      <span class="block text-sm mb-3">Letztes Update dieser Daten: {lastUpdated}</span>
+      <Markdown content={service.description}/>
 
       <div class="columns-3 mt-3 gap-1">
         <dl>
           <dt class="font-bold">Criticality</dt>
           <dd>
-            <span class:list={['px-1.5', 'py-0.5', 'rounded', {'bg-red-400': service?.criticality == 'high'}, 
-                              {'bg-orange-200': service?.criticality == 'medium'},
-                              {'bg-blue-200': service?.criticality == 'low'},]}>
-              {service?.criticality || '-'}
+            <span class:list={['px-1.5', 'py-0.5', 'rounded', {'bg-red-400': service.criticality == 'high'}, 
+                              {'bg-orange-200': service.criticality == 'medium'},
+                              {'bg-blue-200': service.criticality == 'low'},]}>
+              {service.criticality || '-'}
             </span>
           </dd>
         </dl>
         <dl>
           <dt class="font-bold">Product Owner</dt>
           <dd>
-            {service?.product_owner?.name || '-'}
+            {productOwner?.data?.name || '-'}
           </dd>
         </dl>
         <dl>
           <dt class="font-bold">Development</dt>
           <dd>
-            {service?.development || '-'}
+            {service.development || '-'}
           </dd>
         </dl>
         <dl>
           <dt class="font-bold">Operations</dt>
           <dd>
-            {service?.operations || '-'}
+            {service.operations || '-'}
           </dd>
         </dl>
         <dl >
           <dt class="font-bold">SLA</dt>
           <dd>
-            {service?.has_sla ? 'true' : 'false'}
+            {service.has_sla ? 'true' : 'false'}
           </dd>
         </dl>
       </div>
@@ -125,7 +72,7 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
       <dl class="mt-3">
         <dt class="font-bold">Steckbrief</dt>
         <dd>
-          <TinaMarkdown content={service?.strategy_reference}/>
+          <Markdown content={service.strategy_reference}/>
         </dd>
       </dl>
 
@@ -134,7 +81,7 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         <dd>
           <ul class="list-disc ps-5">
             {
-              links.map((link) => (
+              service.links?.map((link) => (
                 <li>
                   <a class="text-brombeer hover:underline" href={link!.url} target="_blank">
                     {link!.label}
@@ -151,12 +98,13 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         <dd>
           <ul class="list-disc ps-5">
             {
-              relations.map((relation) => {
+              relations?.map(async (relation) => {
+                const relatedService = relation.related_service && (await getEntry(relation.related_service));
                 return (
                   <li>
-                    {relation!.description}:{" "}
-                    <a class="text-brombeer hover:underline" href={`/it-landscape/services/${relation!.name}`}>
-                      {relation!.name}{" "}
+                    {relation.description}:{" "}
+                    <a class="text-brombeer hover:underline" href={`/it-landscape/services/${relatedService.id}`}>
+                      {relatedService.name}{" "}
                     </a>
                     <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
                       {relation!.relation_criticality}
@@ -174,12 +122,12 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         <dd>
           <ul class="list-disc ps-5">
             {
-              involvedParties.map((involvedParty) => {
+              involved_parties?.map((involvedParty) => {
                 return (
                   <li>
                     {involvedParty!.description}:{" "}
-                    <a class="text-brombeer hover:underline" href={`/it-landscape/parties/${involvedParty!.key}`}>
-                      {involvedParty!.name}
+                    <a class="text-brombeer hover:underline" href={`/it-landscape/parties/${involvedParty.key}`}>
+                      {involvedParty.name}
                     </a>
                   </li>
                 );
@@ -194,10 +142,10 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         <dd>
           <ul class="list-disc ps-5">
             {
-              lifecycles.map((lifecycle) => {
+              service.lifecycle?.map((lifecycle) => {
                 return (
                   <li>
-                    {lifecycle!.date}:{" "}
+                    {new Date(lifecycle.date).toLocaleDateString("de")}:{" "}
                     <span class:list={['px-1.5', 'py-0.5', 'rounded', 'text-xs', 
                               {'bg-green-200': lifecycle?.state == 'in_production'}, 
                               {'bg-orange-200': lifecycle?.state == 'in_progress'},

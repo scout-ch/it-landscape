@@ -3,23 +3,24 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "build": "astro build",
     "lint": "biome check --write"
   },
   "dependencies": {
-    "@astrojs/react": "^3.0.2",
-    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/react": "4.2.3",
     "@rollup/plugin-yaml": "^4.1.1",
-    "astro": "^3.2.0",
+    "@tailwindcss/vite": "^4.1.2",
+    "astro": "5.6.1",
     "final-form": "^4.20.10",
-    "marked": "^9.0.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-is": "^17.0.2",
-    "tailwindcss": "^3.2.7"
+    "marked": "^15.0.7",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-is": "^19.1.0",
+    "tailwindcss": "^4.1.2"
   },
   "devDependencies": {
-    "@types/node": "20.8.4"
+    "@biomejs/biome": "1.9.4",
+    "@types/node": "22.14.0"
   }
 }

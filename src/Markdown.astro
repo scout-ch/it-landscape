@@ -1,0 +1,10 @@
+---
+import { marked } from 'marked'
+export interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+---
+
+<div set:html={marked(content)} class="prose prose-slate max-w-none" />
