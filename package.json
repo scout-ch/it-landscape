@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev & astro dev\"",
+    "dev-astro": "astro dev",
     "build-astro": "astro build",
     "build": "tinacms build && next build && astro build",
     "start": "tinacms build && next start",

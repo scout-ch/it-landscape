@@ -1,0 +1,161 @@
+---
+import { client } from "../../../.tina/__generated__/client.js";
+import Layout from "../../layouts/Layout.astro";
+import { ServiceConnectionEdges } from "../../../.tina/__generated__/types";
+
+import { beautifyString } from "../../utils";
+
+export async function getStaticPaths() {
+  const variants = ["criticality", "status", "product_owner", "strategy_reference"];
+
+  return variants.map((variant) => ({
+    params: {
+      variant: variant
+    },
+    props: { variant: variant }
+  }));
+}
+
+const serviceResponse = await client.queries.serviceConnection();
+// @ts-ignore
+const serviceEdges: ServiceConnectionEdges[] = serviceResponse.data.serviceConnection.edges || [];
+function compareDates(a, b) {
+  return a.date - b.date;
+}
+
+const services = serviceEdges.map((service: ServiceConnectionEdges) => {
+  const lifecycle = service.node?.lifecycle?.sort(compareDates) || [];
+  const productOwner = service.node?.product_owner?.name;
+  const dateString: string = service.node?.last_updated ? new Date(service.node?.last_updated).toLocaleDateString("de") : "unknown";
+
+  return {
+    id: service.node?.id,
+    name: service.node?.name,
+    status: lifecycle[0]?.state,
+    product_owner: productOwner,
+    criticality: service.node?.criticality,
+    strategy_reference: service.node?.strategy_reference,
+    lastUpdated: dateString
+  };
+});
+
+const variant = Astro.props.variant || "criticality";
+const buckets = services.reduce((acc, service) => {
+  const bucket = service[variant] || "Unknown";
+
+  if (!acc[bucket]) {
+    acc[bucket] = [];
+  }
+
+  acc[bucket].push(service);
+  return acc;
+}, {});
+
+console.log(buckets);
+
+const bucketKeys = Object.keys(buckets).sort((a, b) => {
+  let order = {};
+
+  if (variant === "status") {
+    order = {
+      "In Production": 1,
+      "In Development": 2,
+      "In Planning": 3,
+      Unknown: 4
+    };
+  } else if (variant === "criticality") {
+    order = {
+      High: 1,
+      Medium: 2,
+      Low: 3,
+      Unknown: 4
+    };
+  } else {
+    order = {
+      Unknown: 1
+    };
+  }
+
+  return (order[a] || 5) - (order[b] || 5) || a.localeCompare(b);
+});
+---
+
+<style>
+  tr:nth-child(even) {
+    background-color: rgba(82, 29, 58, 0.2);
+  }
+</style>
+
+<Layout title="Bucket">
+  <main class="container mx-auto p-5 text-lg">
+    <h1 class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800">Bucket View</h1>
+
+    <div class="mb-4 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <label class="text-lg font-medium">Sort by:</label>
+        {
+          ["criticality", "status", "product_owner", "strategy_reference"].sort().map((bucket) => (
+            <button id="bucket-filter" data-value={bucket} class={`rounded-md border border-gray-300 p-2 ${variant === bucket ? "bg-gray-300 font-bold" : "bg-white"}`}>
+              {beautifyString(bucket)}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {
+        bucketKeys.map((bucket) => (
+          <div class="rounded-lg bg-white p-5 shadow-md" id={bucket}>
+            <h2 class="mb-4 text-2xl font-bold">{beautifyString(bucket)}</h2>
+            <table cellpadding="7" class="table-auto">
+              <thead
+                style={{
+                  fontWeight: "bolder",
+                  borderBottom: "2px solid"
+                }}
+              >
+                <tr>
+                  <th>Name</th>
+                  {variant !== "status" && <th>Status</th>}
+                  {variant !== "criticality" && <th>Criticality</th>}
+                  {variant !== "product_owner" && <th>Product Owner</th>}
+                  <th>Last Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                {buckets[bucket].map((service) => (
+                  <tr id={service.id as string}>
+                    <td>
+                      <a class="text-brombeer hover:underscore" href={`/it-landscape/services/${service.name}`}>
+                        {service.name}
+                      </a>
+                    </td>
+                    {variant !== "status" && <td>{service.status}</td>}
+                    {variant !== "criticality" && <td>{service.criticality}</td>}
+                    {variant !== "product_owner" && <td>{service.strategy_reference}</td>}
+                    <td>{service.lastUpdated}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))
+      }
+    </div>
+  </main>
+</Layout>
+
+<script is:inline>
+  onClickHandler = (event) => {
+    const selectedVariant = event.target.getAttribute("data-value");
+    const url = new URL(window.location.href);
+    url.pathname = `/it-landscape/buckets/${selectedVariant}`;
+    window.location.href = url.toString();
+  };
+
+  const buttons = document.querySelectorAll("#bucket-filter");
+  buttons.forEach((button) => {
+    button.addEventListener("click", onClickHandler);
+  });
+</script>
