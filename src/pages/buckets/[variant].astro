@@ -9,17 +9,17 @@ export async function getStaticPaths() {
 
   return variants.map((variant) => ({
     params: {
-      variant: variant,
+      variant: variant
     },
-    props: { variant: variant },
+    props: { variant: variant }
   }));
 }
 
 const services = await getCollection("service");
 const variant = Astro.props.variant || "criticality";
-const buckets = services.reduce((acc, service) => {
+const buckets = services.reduce((acc: Record<string, CollectionEntry<"service">[]>, service: CollectionEntry<"service">) => {
   const serviceWithStatus = { ...service.data, status: service.data.lifecycle?.[0]?.state };
-  const bucket = serviceWithStatus[variant] || "Unknown";
+  const bucket = serviceWithStatus[variant as keyof typeof serviceWithStatus] || "Unknown";
 
   if (!acc[bucket]) {
     acc[bucket] = [];
@@ -33,26 +33,26 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
   let order = {};
 
   if (variant === "status") {
-    order = {
-      "In Production": 1,
-      "In Development": 2,
-      "In Planning": 3,
-      Unknown: 4,
+    const order = {
+      idea: 1,
+      planned: 2,
+      in_progress: 3,
+      in_development: 4,
+      in_production: 5,
+      Unknown: 6
     };
+    return order[a] - order[b];
   } else if (variant === "criticality") {
-    order = {
-      High: 1,
-      Medium: 2,
-      Low: 3,
-      Unknown: 4,
+    const order = {
+      high: 1,
+      medium: 2,
+      low: 3,
+      unknown: 4
     };
+    return order[a] - order[b];
   } else {
-    order = {
-      Unknown: 1,
-    };
+    return a.localeCompare(b);
   }
-
-  return (order[a] || 5) - (order[b] || 5) || a.localeCompare(b);
 });
 ---
 
@@ -64,27 +64,17 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
 
 <Layout title="Bucket">
   <main class="container mx-auto p-5 text-lg">
-    <h1
-      class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800"
-    >
-      Bucket View
-    </h1>
+    <h1 class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800">Bucket View</h1>
 
     <div class="mb-4 flex items-center justify-between">
       <div class="flex items-center space-x-2">
         <label class="text-lg font-medium">Sort by:</label>
         {
-          ["criticality", "status", "product_owner", "strategy_reference"]
-            .sort()
-            .map((bucket) => (
-              <button
-                id="bucket-filter"
-                data-value={bucket}
-                class={`rounded-md border border-gray-300 p-2 ${variant === bucket ? "bg-gray-300 font-bold" : "bg-white"}`}
-              >
-                {beautifyString(bucket)}
-              </button>
-            ))
+          ["criticality", "status", "product_owner", "strategy_reference"].sort().map((bucket) => (
+            <button id="bucket-filter" data-value={bucket} class={`rounded-md border border-gray-300 p-2 ${variant === bucket ? "bg-gray-300 font-bold" : "bg-white"}`}>
+              {beautifyString(bucket)}
+            </button>
+          ))
         }
       </div>
     </div>
@@ -94,11 +84,11 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
         bucketKeys.map((bucket) => (
           <div class="rounded-lg bg-white p-5 shadow-md" id={bucket}>
             <h2 class="mb-4 text-2xl font-bold">{beautifyString(bucket)}</h2>
-            <table cellpadding="7" class="table-auto">
+            <table cellpadding="7" class="table-auto break-all">
               <thead
                 style={{
                   fontWeight: "bolder",
-                  borderBottom: "2px solid",
+                  borderBottom: "2px solid"
                 }}
               >
                 <tr>
@@ -113,27 +103,14 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
                 {buckets[bucket].map((service: CollectionEntry<"service">) => (
                   <tr id={service.id as string}>
                     <td>
-                      <a
-                        class="text-brombeer hover:underscore"
-                        href={`/it-landscape/services/${service.id}`}
-                      >
-                        {service.name}
+                      <a class="text-brombeer hover:underscore" href={`/it-landscape/services/${service.id}`}>
+                        {service.data.name}
                       </a>
                     </td>
-                    {variant !== "status" && <td>{service.status}</td>}
-                    {variant !== "criticality" && (
-                      <td>{service.criticality}</td>
-                    )}
-                    {variant !== "product_owner" && (
-                      <td>{service.strategy_reference}</td>
-                    )}
-                    <td>
-                      {service.last_updated
-                        ? new Date(
-                            service.last_updated,
-                          ).toLocaleDateString("de")
-                        : "unknown"}
-                    </td>
+                    {variant !== "status" && <td>{service.data.status}</td>}
+                    {variant !== "criticality" && <td>{service.data.criticality}</td>}
+                    {variant !== "product_owner" && <td>{service.data.product_owner?.id}</td>}
+                    <td>{service.data.last_updated ? new Date(service.data.last_updated).toLocaleDateString("de") : "unknown"}</td>
                   </tr>
                 ))}
               </tbody>
