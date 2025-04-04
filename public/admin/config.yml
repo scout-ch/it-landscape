@@ -1,0 +1,147 @@
+backend: 
+  name: github
+  repo: scout-ch/it-landscape 
+  branch: main
+  auth_scope: repo
+  open_authoring: false 
+
+local_backend: true
+media_folder: "public/uploads"
+site_url: https://scout-ch.github.io/it-landscape
+
+collections:
+  - name: "party"
+    label: "Party"
+    folder: "content/party"
+    create: true
+    extension: "yaml"
+    fields:
+      - name: "key"
+        label: "Key"
+        widget: "string"
+      - name: "name"
+        label: "Name"
+        widget: "string"
+      - name: "pbsNumber"
+        label: "PBS Number"
+        widget: "number"
+        required: false
+      - name: "type"
+        label: "Type"
+        widget: "select"
+        options: ["person", "organization"]
+      - name: "links"
+        label: "Links"
+        widget: "list"
+        required: false
+        fields:
+          - name: "url"
+            label: "URL"
+            widget: "string"
+          - name: "label"
+            label: "Label"
+            widget: "string"
+
+  - name: "service"
+    label: "Service"
+    folder: "content/service"
+    create: true
+    extension: "yaml"
+    fields:
+      - name: "name"
+        label: "Name"
+        widget: "string"
+      # - name: "description"
+      #   label: "Description"
+      #   widget: "string"
+      # - name: "criticality"
+      #   label: "Criticality"
+      #   widget: "select"
+      #   options: ["high", "medium", "low"]
+      #   required: false
+      # - name: "strategy_reference"
+      #   label: "Strategy Reference"
+      #   widget: "string"
+      # - name: "product_owner"
+      #   label: "Product Owner"
+      #   widget: "relation"
+      #   collection: "party"
+      #   searchFields: ["name"]
+      #   valueField: "key"
+      #   required: false
+      # - name: "development"
+      #   label: "Development"
+      #   widget: "select"
+      #   options: ["external", "internal"]
+      #   required: false
+      # - name: "operations"
+      #   label: "Operations"
+      #   widget: "select"
+      #   options: ["external", "betriebsplattform"]
+      #   required: false
+      # - name: "links"
+      #   label: "Links"
+      #   widget: "list"
+      #   required: false
+      #   fields:
+      #     - name: "url"
+      #       label: "URL"
+      #       widget: "string"
+      #     - name: "label"
+      #       label: "Label"
+      #       widget: "string"
+      # - name: "involved_parties"
+      #   label: "Involved Parties"
+      #   widget: "list"
+      #   required: false
+      #   fields:
+      #     - name: "party"
+      #       label: "Party"
+      #       widget: "string"
+      #     - name: "description"
+      #       label: "Description"
+      #       widget: "string"
+      # - name: "has_sla"
+      #   label: "Has SLA"
+      #   widget: "boolean"
+      # - name: "relations"
+      #   label: "Relations"
+      #   widget: "list"
+      #   required: false
+      #   fields:
+      #     - name: "service"
+      #       label: "Service"
+      #       widget: "string"
+      #     - name: "description"
+      #       label: "Description"
+      #       widget: "string"
+      #     - name: "relation_criticality"
+      #       label: "Relation Criticality"
+      #       widget: "string"
+      # - name: "last_updated"
+      #   label: "Last Updated"
+      #   widget: "datetime"
+      # - name: "lifecycle"
+      #   label: "Lifecycle"
+      #   widget: "list"
+      #   required: false
+      #   fields:
+      #     - name: "state"
+      #       label: "State"
+      #       widget: "select"
+      #       options: ["idea", "planned", "in_progress", "in_production", "on_hold", "eol", "decommissioned"]
+      #     - name: "date"
+      #       label: "Date"
+      #       widget: "datetime"
+      # - name: "tech_stack"
+      #   label: "Tech Stack"
+      #   widget: "list"
+      #   required: false
+      #   fields:
+      #     - name: "stack_component"
+      #       label: "Stack Component"
+      #       widget: "string"
+      # - name: "additional_information"
+      #   label: "Additional Information"
+      #   widget: "text"
+      #   required: false
