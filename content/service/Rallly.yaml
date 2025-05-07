@@ -1,0 +1,25 @@
+name: Rallly
+description: 'Coordinate group meetings without endless back-and-forth emails.'
+criticality: low
+product_owner: content/party/Clever.yaml
+development: open_source
+operations: betriebsplattform
+links:
+  - url: 'https://github.com/scout-ch/rallly.scout.ch'
+    label: Github config repository (private)
+  - url: 'https://rallly.scout.ch'
+    label: Tool
+involved_parties:
+  - party: content/party/Clever.yaml
+    description: Operator
+has_sla: false
+relations:
+  - type: critically_depends_on
+    service: content/service/Betriebsplattform.yaml
+    description: 'Rallly is hosted on the Betriebsplattform.'
+tech_stack:
+  - stack_component: content/tech_stack/Docker.yaml
+lifecycle:
+  - state: in_production
+    date: 2025-04-24T23:07:00.000+01:00
+last_updated: 2025-05-07T23:37:26+0200

@@ -1,0 +1,25 @@
+name: Vaultwarden
+description: 'An alternative server implementation of the Bitwarden Client API, written in Rust and compatible with [official Bitwarden clients](https://bitwarden.com/download/), perfect for self-hosted deployment where running the official resource-heavy service might not be ideal.'
+criticality: low
+product_owner: content/party/GSPBS.yaml
+development: open_source
+operations: betriebsplattform
+links:
+  - url: 'https://github.com/scout-ch/pbs-vaultwarden'
+    label: Github config repository (private)
+  - url: 'https://vaultwarden.scout.ch/#/login'
+    label: Tool
+involved_parties:
+  - party: content/party/Clever.yaml
+    description: Operator
+has_sla: false
+relations:
+  - type: critically_depends_on
+    service: content/service/Betriebsplattform.yaml
+    description: 'Vaultwarden is hosted on the Betriebsplattform.'
+tech_stack:
+  - stack_component: content/tech_stack/Docker.yaml
+lifecycle:
+  - state: in_production
+    date: 2024-08-11T12:32:00.000+02:00
+last_updated: 2025-05-07T23:37:26+0200
