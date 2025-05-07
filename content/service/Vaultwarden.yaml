@@ -6,7 +6,7 @@ development: open_source
 operations: betriebsplattform
 links:
   - url: 'https://github.com/scout-ch/pbs-vaultwarden'
-    label: Github config repository (private)
+    label: GitHub config repository (private)
   - url: 'https://vaultwarden.scout.ch/#/login'
     label: Tool
 involved_parties:

@@ -6,7 +6,7 @@ development: open_source
 operations: betriebsplattform
 links:
   - url: 'https://github.com/scout-ch/rallly.scout.ch'
-    label: Github config repository (private)
+    label: GitHub config repository (private)
   - url: 'https://rallly.scout.ch'
     label: Tool
 involved_parties:
