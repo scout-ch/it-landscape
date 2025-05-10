@@ -1,6 +1,8 @@
 name: Rallly
-description: 'Coordinate group meetings without endless back-and-forth emails.'
+description: |
+  Coordinate group meetings without endless back-and-forth emails.
 criticality: low
+strategy_reference: ''
 product_owner: content/party/Clever.yaml
 development: open_source
 operations: betriebsplattform
@@ -14,12 +16,13 @@ involved_parties:
     description: Operator
 has_sla: false
 relations:
-  - type: critically_depends_on
-    service: content/service/Betriebsplattform.yaml
-    description: 'Rallly is hosted on the Betriebsplattform.'
-tech_stack:
-  - stack_component: content/tech_stack/Docker.yaml
+  - service: content/service/Betriebsplattform.yaml
+    description: Rallly is hosted on the Betriebsplattform.
+    relation_criticality: depends_on
 lifecycle:
   - state: in_production
-    date: 2025-04-24T23:07:00.000+01:00
-last_updated: 2025-05-07T23:37:26+0200
+    date: 2025-04-24T22:07:00.000Z
+tech_stack:
+  - stack_component: content/tech_stack/Docker.yaml
+additional_information: ''
+last_updated: 2025-05-10T12:48:36.956Z
