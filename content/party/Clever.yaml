@@ -1,0 +1,9 @@
+key: Clever
+name: 'Nicolas Da Mutten / Clever'
+pbsNumber: 7419
+type: person
+links:
+  - url: https://matrix.to/#/@nicolas:damutten.ch
+    label: Matrix
+  - url: nicolas.damutten@pbs.ch
+    label: E-Mail

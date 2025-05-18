@@ -4,6 +4,11 @@ criticality: medium
 strategy_reference: |
   Projekt im Tagesgeschäft
 operations: external
+involved_parties:
+  - party: content/party/Clever.yaml
+    description: project-lead
+  - party: content/party/Filou.yaml
+    description: project-member
 has_sla: false
 lifecycle:
   - state: idea
