@@ -64,6 +64,8 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
   }
   return (order[a] || 5) - (order[b] || 5) || a.localeCompare(b);
 });
+
+console.log(buckets);
 ---
 
 <style>
@@ -89,10 +91,10 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
       {
         bucketKeys.map((bucket) => (
-          <div class="rounded-lg bg-white p-5 shadow-md" id={bucket}>
+          <div class="rounded-lg bg-white p-1 shadow-md" id={bucket}>
             <h2 class="mb-4 text-2xl font-bold">{beautifyString(bucket)}</h2>
             <table cellpadding="7" class="table-auto">
               <thead
@@ -119,7 +121,7 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
                     </td>
                     {variant !== "status" && <td>{service.status}</td>}
                     {variant !== "criticality" && <td>{service.criticality}</td>}
-                    {variant !== "product_owner" && <td>{service.strategy_reference}</td>}
+                    {variant !== "product_owner" && <td>{service.product_owner}</td>}
                     <td>{service.lastUpdated}</td>
                   </tr>
                 ))}
