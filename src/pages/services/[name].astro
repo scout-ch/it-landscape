@@ -75,9 +75,9 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
 
 <Layout title={service?.name || ""}>
   <main class="container mx-auto py-10">
-    <a class="text-brombeer underline hover:font-medium" href={'/it-landscape/services/'}>
+    <button class="text-brombeer underline hover:font-medium" onclick="history.back()">
       back
-    </a>
+    </button>
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
       <h1 class="text-5xl font-extrabold">{service?.name}</h1>
       <span class="block text-sm mb-3"
@@ -213,8 +213,8 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         </dd>
       </dl>
     </article>
-    <a class="text-brombeer underline hover:font-medium" href={'/it-landscape/services/'}>
+    <button class="text-brombeer underline hover:font-medium" onclick="history.back()">
       back
-    </a>
+    </button>
   </main>
 </Layout>

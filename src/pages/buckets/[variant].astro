@@ -45,17 +45,19 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
   let order = {};
   if (variant === "status") {
     order = {
-      "In Production": 1,
-      "In Development": 2,
-      "In Planning": 3,
-      Unknown: 4
+      in_production: 1,
+      in_progress: 2,
+      planned: 3,
+      idea: 4,
+      on_hold: 5,
+      unknown: 6
     };
   } else if (variant === "criticality") {
     order = {
-      High: 1,
-      Medium: 2,
-      Low: 3,
-      Unknown: 4
+      high: 1,
+      medium: 2,
+      low: 3,
+      unknown: 4
     };
   } else {
     order = {
@@ -82,7 +84,7 @@ console.log(buckets);
       <div class="flex items-center space-x-2">
         <label class="text-lg font-medium">Sort by:</label>
         {
-          ["criticality", "status", "product_owner", "strategy_reference"].sort().map((bucket) => (
+          ["criticality", "status", "product_owner"].sort().map((bucket) => (
             <button id="bucket-filter" data-value={bucket} class={`rounded-md border border-gray-300 p-2 ${variant === bucket ? "bg-gray-300 font-bold" : "bg-white"}`}>
               {beautifyString(bucket)}
             </button>
@@ -95,7 +97,7 @@ console.log(buckets);
       {
         bucketKeys.map((bucket) => (
           <div class="rounded-lg bg-white p-1 shadow-md" id={bucket}>
-            <h2 class="mb-4 text-2xl font-bold">{beautifyString(bucket)}</h2>
+            <h2 class="mt-1 ml-2 mb-4 text-2xl font-bold">{beautifyString(bucket)}</h2>
             <table cellpadding="7" class="table-auto">
               <thead
                 style={{

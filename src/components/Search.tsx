@@ -76,7 +76,7 @@ export default function Search(props: Props) {
                                     </td>
                                     <td>
                                         <span
-                                            className={`${service.status === "in_production" ? "bg-green-200" :
+                                            className={`px-1.5 rounded ${service.status === "in_production" ? "bg-green-200" :
                                                 service.status === "in_progress" ? "bg-orange-200" :
                                                     service.status === "idea" ? "bg-yellow-200" :
                                                         service.status === "planned" ? "bg-yellow-200" : ""
@@ -87,7 +87,7 @@ export default function Search(props: Props) {
                                     </td>
                                     <td>
                                         <span
-                                            className={`${service.criticality === "low" ? "bg-green-200" :
+                                            className={`px-1.5 rounded ${service.criticality === "low" ? "bg-green-200" :
                                                 service.criticality === "medium" ? "bg-orange-200" :
                                                     service.criticality === "high" ? "bg-yellow-200" :
                                                         service.criticality === "critical" ? "bg-red-200" : ""
