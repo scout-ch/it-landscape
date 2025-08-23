@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import { client } from "../../../.tina/__generated__/client.js"
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { ServiceRelations, ServiceLinks, ServiceInvolved_Parties, Service, ServiceConnectionEdges, ServiceConnection, Maybe, ServiceLifecycle } from "../../../.tina/__generated__/types";
+import { formatDate, getBgColorByCriticality, getBgColorByStatus } from "../../utils";
 
 export async function getStaticPaths() {
   const serviceResponse = await client.queries.serviceConnection()
@@ -69,19 +70,19 @@ const lifecycles = serviceLifecycle.filter(function(life: Maybe<ServiceLifecycle
   }
 })
 
-const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_updated).toLocaleDateString('de') : 'unknown'
+const lastUpdatedValue: string = formatDate(service?.last_updated)
 
 ---
 
 <Layout title={service?.name || ""}>
   <main class="container mx-auto py-10">
-    <a class="text-brombeer underline hover:font-medium" href={'/it-landscape/services/'}>
+    <button class="text-brombeer underline hover:font-medium" onclick="history.back()">
       back
-    </a>
+    </button>
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
       <h1 class="text-5xl font-extrabold">{service?.name}</h1>
       <span class="block text-sm mb-3"
-        >Letztes Update dieser Daten: {lastUpdatedValue}</span
+        >Last Updated: {lastUpdatedValue}</span
       >
       <TinaMarkdown content={service?.description}/>
 
@@ -89,9 +90,7 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         <dl>
           <dt class="font-bold">Criticality</dt>
           <dd>
-            <span class:list={['px-1.5', 'py-0.5', 'rounded', {'bg-red-400': service?.criticality == 'high'}, 
-                              {'bg-orange-200': service?.criticality == 'medium'},
-                              {'bg-blue-200': service?.criticality == 'low'},]}>
+            <span class:list={['px-1.5', 'py-0.5', 'rounded', getBgColorByCriticality(service?.criticality)]}>
               {service?.criticality || '-'}
             </span>
           </dd>
@@ -197,12 +196,9 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
               lifecycles.map((lifecycle) => {
                 return (
                   <li>
-                    {lifecycle!.date}:{" "}
+                    {formatDate(lifecycle!.date)}:{" "}
                     <span class:list={['px-1.5', 'py-0.5', 'rounded', 'text-xs', 
-                              {'bg-green-200': lifecycle?.state == 'in_production'}, 
-                              {'bg-orange-200': lifecycle?.state == 'in_progress'},
-                              {'bg-yellow-200': lifecycle?.state == 'planned'},
-                              {'bg-yellow-200': lifecycle?.state == 'idea'}]}>
+                              getBgColorByStatus(lifecycle?.state)]}>
                               {lifecycle?.state}
                     </span>
                   </li>
@@ -213,8 +209,8 @@ const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_u
         </dd>
       </dl>
     </article>
-    <a class="text-brombeer underline hover:font-medium" href={'/it-landscape/services/'}>
+    <button class="text-brombeer underline hover:font-medium" onclick="history.back()">
       back
-    </a>
+    </button>
   </main>
 </Layout>
