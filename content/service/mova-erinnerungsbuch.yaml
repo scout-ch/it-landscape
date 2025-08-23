@@ -1,0 +1,32 @@
+name: mova-erinnerungsbuch
+description: |
+  Erinnerungsbuch Fotos vom Mova
+criticality: low
+strategy_reference: ''
+product_owner: content/party/GSPBS.yaml
+development: internal
+operations: betriebsplattform
+links:
+  - url: 'https://mova-erinnerungsbuch.ch'
+    label: Instance
+  - url: 'https://github.com/scout-ch/mova-erinnerungsbuch-frontend'
+    label: Frontend Repo (private)
+  - url: 'https://github.com/scout-ch/mova-erinnerungsbuch-backend'
+    label: Backend Repo (private)
+involved_parties:
+  - party: content/party/Clever.yaml
+    description: Operator
+  - party: content/party/namur.yaml
+    description: Original Developer
+has_sla: false
+relations:
+  - service: content/service/Betriebsplattform.yaml
+    description: Runs on
+    relation_criticality: critically_depends_on
+lifecycle:
+  - state: in_progress
+    date: 2025-09-27T22:00:00.000Z
+tech_stack:
+  - stack_component: content/tech_stack/Craft-CMS.yaml
+additional_information: ''
+last_updated: 2025-09-29T20:49:41.135Z
