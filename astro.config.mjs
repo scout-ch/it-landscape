@@ -1,14 +1,14 @@
 import { defineConfig } from 'astro/config';
 import yaml from '@rollup/plugin-yaml';
-import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://scout-ch.github.io',
   base: '/it-landscape',
-  integrations: [tailwind(), react()],
+  integrations: [react()],
   vite: {
-    plugins: [yaml()]
+    plugins: [yaml(), tailwindcss()],
   }
 });

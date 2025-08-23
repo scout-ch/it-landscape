@@ -69,7 +69,7 @@ export default function Search(props: Props) {
                         {
                             filteredList?.map((service) => (
                                 <tr key={service.id} className='even:bg-brombeer-200'>
-                                    <td>
+                                    <td className='px-2 py-2'>
                                         <a className="text-brombeer hover:underscore" href={`/it-landscape/services/${service.name}`}>
                                             {service.name}
                                         </a>
