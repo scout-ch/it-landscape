@@ -5,6 +5,7 @@ module.exports = {
 		extend: {
 			colors: {
 			'brombeer': "#521d3a",
+			'brombeer-200': "#521d3a33",
 			'gray': '#f8f7f6'
 			}
 		},

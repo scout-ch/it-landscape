@@ -1,9 +1,10 @@
 ---
 import { client } from "../../.tina/__generated__/client.js";
 import Layout from "../layouts/Layout.astro";
-import { Service, ServiceConnectionEdges } from "../../.tina/__generated__/types";
+import { ServiceConnectionEdges } from "../../.tina/__generated__/types";
 
 import Search from "../components/Search";
+import { formatDate } from "../utils";
 
 const serviceResponse = await client.queries.serviceConnection();
 // @ts-ignore
@@ -13,7 +14,7 @@ const services = serviceEdges.map((service: ServiceConnectionEdges) => {
   const lifecycle = service.node?.lifecycle || [];
   const length: number = lifecycle?.length || 0;
   const productOwner = service.node?.product_owner?.name;
-  const dateString: string = service.node?.last_updated ? new Date(service.node?.last_updated).toLocaleDateString("de") : "unknown";
+  const dateString: string = formatDate(service.node?.last_updated)
 
   return {
     id: service.node?.id,

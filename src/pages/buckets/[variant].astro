@@ -2,7 +2,7 @@
 import { client } from "../../../.tina/__generated__/client.js";
 import Layout from "../../layouts/Layout.astro";
 import { ServiceConnectionEdges } from "../../../.tina/__generated__/types";
-import { beautifyString } from "../../utils";
+import { beautifyString, formatDate } from "../../utils";
 export async function getStaticPaths() {
   const variants = ["criticality", "status", "product_owner", "strategy_reference"];
   return variants.map((variant) => ({
@@ -21,7 +21,7 @@ function compareDates(a, b) {
 const services = serviceEdges.map((service: ServiceConnectionEdges) => {
   const lifecycle = service.node?.lifecycle?.sort(compareDates) || [];
   const productOwner = service.node?.product_owner?.name;
-  const dateString: string = service.node?.last_updated ? new Date(service.node?.last_updated).toLocaleDateString("de") : "unknown";
+  const dateString: string = formatDate(service.node?.last_updated)
   return {
     id: service.node?.id,
     name: service.node?.name,
@@ -69,13 +69,6 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
 
 console.log(buckets);
 ---
-
-<style>
-  tr:nth-child(even) {
-    background-color: rgba(82, 29, 58, 0.2);
-  }
-</style>
-
 <Layout title="Bucket">
   <main class="container mx-auto p-5 text-lg">
     <h1 class="mb-4 mt-5 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-neutral-800">Bucket View</h1>
@@ -115,7 +108,7 @@ console.log(buckets);
               </thead>
               <tbody>
                 {buckets[bucket].map((service) => (
-                  <tr id={service.id as string}>
+                  <tr id={service.id as string} class="even:bg-brombeer-200">
                     <td>
                       <a class="text-brombeer hover:underscore" href={`/it-landscape/services/${service.name}`}>
                         {service.name}

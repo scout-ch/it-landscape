@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import { client } from "../../../.tina/__generated__/client.js"
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { ServiceRelations, ServiceLinks, ServiceInvolved_Parties, Service, ServiceConnectionEdges, ServiceConnection, Maybe, ServiceLifecycle } from "../../../.tina/__generated__/types";
+import { formatDate } from "../../utils";
 
 export async function getStaticPaths() {
   const serviceResponse = await client.queries.serviceConnection()
@@ -69,7 +70,7 @@ const lifecycles = serviceLifecycle.filter(function(life: Maybe<ServiceLifecycle
   }
 })
 
-const lastUpdatedValue: string = service?.last_updated ? new Date(service.last_updated).toLocaleDateString('de') : 'unknown'
+const lastUpdatedValue: string = formatDate(service?.last_updated)
 
 ---
 
