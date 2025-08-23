@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brombeer: #521d3a;
+  --color-brombeer-200: #521d3a33;
+  --color-gray: #f8f7f6;
+}
