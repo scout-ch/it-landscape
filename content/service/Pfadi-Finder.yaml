@@ -1,0 +1,24 @@
+name: Pfadi Finder Midata Adapter
+description: ''
+criticality: high
+strategy_reference: ''
+product_owner: content/party/tweety.yaml
+development: internal
+operations: external
+links:
+  - url: 'https://github.com/scout-ch/pfadi-finder-midata-adapter'
+    label: Github Repo
+  - url: 'https://pfadi.swiss/de/go/mitmachen/#Pfadi-Finder'
+    label: Pfadi Finder
+has_sla: false
+relations:
+  - service: content/service/MiData.yaml
+    description: loads data
+    relation_criticality: critically_depends_on
+lifecycle:
+  - state: in_production
+    date: 2023-09-30T22:00:00.000Z
+tech_stack:
+  - stack_component: content/tech_stack/PHP.yaml
+additional_information: ''
+last_updated: 2025-08-23T12:02:43.737Z
