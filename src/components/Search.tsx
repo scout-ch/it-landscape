@@ -2,7 +2,7 @@ import React, {
     useState,
 } from 'react'
 
-import { beautifyString } from "../utils";
+import { beautifyString, getBgColorByCriticality, getBgColorByStatus } from "../utils";
 
 type Service = {
     id: string
@@ -76,22 +76,14 @@ export default function Search(props: Props) {
                                     </td>
                                     <td>
                                         <span
-                                            className={`p-1.5 text-xs rounded ${service.status === "in_production" ? "bg-green-200" :
-                                                service.status === "in_progress" ? "bg-orange-200" :
-                                                    service.status === "idea" ? "bg-yellow-200" :
-                                                        service.status === "planned" ? "bg-yellow-200" : ""
-                                                }`}
+                                            className={`p-1.5 text-xs rounded ${getBgColorByStatus(service.status)}`}
                                         >
                                             {beautifyString(service.status as string)}
                                         </span>
                                     </td>
                                     <td>
                                         <span
-                                            className={`p-1.5 text-xs rounded ${service.criticality === "low" ? "bg-green-200" :
-                                                service.criticality === "medium" ? "bg-orange-200" :
-                                                    service.criticality === "high" ? "bg-yellow-200" :
-                                                        service.criticality === "critical" ? "bg-red-200" : ""
-                                                }`}
+                                            className={`p-1.5 text-xs rounded ${getBgColorByCriticality(service.criticality)}`}
                                         >
                                             {service.criticality}
                                         </span>

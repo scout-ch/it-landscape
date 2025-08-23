@@ -1,42 +1,65 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { client } from "../../../.tina/__generated__/client.js"
-import { marked } from "marked";
-import { Debug } from 'astro:components'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { client } from "../../../.tina/__generated__/client.js";
 import { Party } from "../../../.tina/__generated__/types";
 
 export async function getStaticPaths() {
-  const partyResponse = await client.queries.partyConnection()
+  const partyResponse = await client.queries.partyConnection();
   return partyResponse.data.partyConnection.edges?.map((party) => ({
     params: {
-      key: party?.node?.key
+      key: party?.node?.key,
     },
     props: { party: party?.node },
-  }))
+  }));
 }
 
-
-const party: Party = Astro.props.party
-
+const party: Party = Astro.props.party;
 ---
 
 <Layout title={party.name}>
   <main class="container mx-auto py-10">
+    <button
+      class="text-brombeer underline hover:font-medium"
+      onclick="history.back()"
+    >
+      back
+    </button>
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
       <h1 class="text-5xl font-extrabold">{party.name}</h1>
 
-      <dl class="mb-4 mt-3">
-        <dt class="font-bold">PBS Number</dt>
-        <dd>
-          {party.pbsNumber}
-        </dd>
-      </dl>
+      {
+        party.pbsNumber && (
+          <dl class="mb-4 mt-3">
+            <dt class="font-bold">PBS Number</dt>
+            <dd>{party.pbsNumber}</dd>
+          </dl>
+        )
+      }
 
       <dl class="mb-4 mt-3">
         <dt class="font-bold">type</dt>
         <dd>
           {party.type}
+        </dd>
+      </dl>
+
+      <dl class="mb-4 mt-3">
+        <dt class="font-bold">links</dt>
+        <dd>
+          {
+            party.links?.map((link) => (
+              <div>
+                <a
+                  class="text-brombeer underline hover:font-medium"
+                  href={link?.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link?.label}
+                </a>
+              </div>
+            ))
+          }
         </dd>
       </dl>
     </article>
