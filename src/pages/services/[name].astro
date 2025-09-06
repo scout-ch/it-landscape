@@ -80,8 +80,8 @@ const lastUpdatedValue: string = formatDate(service?.last_updated)
       back
     </button>
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
-      <h1 class="text-5xl font-extrabold">{service?.name}</h1>
-      <span class="block text-sm mb-3"
+      <h1 class="text-5xl font-extrabold mb-3">{service?.name}</h1>
+      <span class="block text-sm mb-4"
         >Last Updated: {lastUpdatedValue}</span
       >
       <TinaMarkdown content={service?.description}/>
