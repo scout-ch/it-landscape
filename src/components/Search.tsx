@@ -62,7 +62,7 @@ export default function Search(props: Props) {
                             <td>Status</td>
                             <td>Cirticality</td>
                             <td>Product Owner</td>
-                            <td>last updated</td>
+                            <td>Last Updated</td>
                         </tr>
                     </thead>
                     <tbody>
