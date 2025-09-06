@@ -2,10 +2,10 @@
 name: Build Pull request
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: pull-request
     name: build astro
     steps:
       - name: Checkout your repository using git
