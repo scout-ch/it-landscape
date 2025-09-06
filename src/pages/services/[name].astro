@@ -196,7 +196,7 @@ const lastUpdatedValue: string = formatDate(service?.last_updated)
               lifecycles.map((lifecycle) => {
                 return (
                   <li>
-                    {formatDate(lifecycle!.date)}:{" "}
+                    {lifecycle!.date}:{" "}
                     <span class:list={['px-1.5', 'py-0.5', 'rounded', 'text-xs', 
                               getBgColorByStatus(lifecycle?.state)]}>
                               {lifecycle?.state}
