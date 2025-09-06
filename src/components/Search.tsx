@@ -31,7 +31,7 @@ export default function Search(props: Props) {
             <input
                 type="text"
                 placeholder="Search..."
-                className="border border-gray-300 rounded p-2 w-full"
+                className="border border-gray-300 rounded p-2 w-full mb-4"
                 value={search}
                 onChange={(e) => {
                     setSearch(e.target.value)
