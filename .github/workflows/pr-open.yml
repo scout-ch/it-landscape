@@ -1,7 +1,9 @@
 
-name: Build Pull request
+name: Build PR
 on:
-  pull_request:
+  pull_request_target:
+    branches: 
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
