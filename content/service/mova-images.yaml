@@ -1,0 +1,9 @@
+name: mova images
+description: |
+  Erinnerungsbuch Fotos vom Mova
+criticality: low
+product_owner: content/party/GSPBS.yaml
+development: external
+operations: betriebsplattform
+has_sla: false
+last_updated: 2025-08-23T12:08:29.481Z
