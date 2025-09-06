@@ -100,14 +100,14 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
       {
         bucketKeys.map((bucket) => (
           <div class="rounded-lg bg-white p-1 shadow-md" id={bucket}>
             <h2 class="mt-1 ml-2 mb-4 text-2xl font-bold">
               {beautifyString(bucket)}
             </h2>
-            <table cellpadding="7" class="table-auto">
+            <table cellpadding="7" class="table-auto w-full">
               <thead
                 style={{
                   fontWeight: "bolder",
