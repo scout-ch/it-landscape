@@ -76,12 +76,12 @@ const lastUpdatedValue: string = formatDate(service?.last_updated)
 
 <Layout title={service?.name || ""}>
   <main class="container mx-auto py-10">
-    <button class="text-brombeer underline hover:font-medium" onclick="history.back()">
-      back
+    <button class="btn" onclick="history.back()">
+      Back
     </button>
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
-      <h1 class="text-5xl font-extrabold">{service?.name}</h1>
-      <span class="block text-sm mb-3"
+      <h1 class="text-5xl font-extrabold mb-3">{service?.name}</h1>
+      <span class="block text-sm mb-4"
         >Last Updated: {lastUpdatedValue}</span
       >
       <TinaMarkdown content={service?.description}/>
@@ -209,8 +209,8 @@ const lastUpdatedValue: string = formatDate(service?.last_updated)
         </dd>
       </dl>
     </article>
-    <button class="text-brombeer underline hover:font-medium" onclick="history.back()">
-      back
+    <button class="btn" onclick="history.back()">
+      Back
     </button>
   </main>
 </Layout>
