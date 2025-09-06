@@ -1,0 +1,37 @@
+name: Taiga
+description: >
+  Taiga: The free and open-source project management tool
+
+
+  For cross-functional agile teams to work effectively
+
+
+  A featured-rich software that offers a very simple start through its intuitive
+  user interface.
+criticality: low
+strategy_reference: ''
+product_owner: content/party/Clever.yaml
+development: external
+operations: betriebsplattform
+links:
+  - url: 'https://taiga.io'
+    label: Software Website
+  - url: 'https://taiga.scout.ch'
+    label: taiga.scout.ch
+  - url: 'https://github.com/taigaio'
+    label: Github of Software
+  - url: 'https://github.com/scout-ch/pbs-taiga'
+    label: Deployment Repo
+involved_parties:
+  - party: content/party/Clever.yaml
+    description: Operator
+has_sla: false
+relations:
+  - service: content/service/Betriebsplattform.yaml
+    description: Runs on
+    relation_criticality: critically_depends_on
+lifecycle:
+  - state: in_progress
+    date: 2025-09-06T22:00:00.000Z
+additional_information: ''
+last_updated: 2025-09-06T23:55:01.328Z
