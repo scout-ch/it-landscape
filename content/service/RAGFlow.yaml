@@ -1,0 +1,30 @@
+name: RAGFlow
+description: >
+  RAGFlow: A RAG tool for semantic searches over collections of documents.
+criticality: low
+strategy_reference: ''
+product_owner: content/party/Cosinus.yaml
+development: external
+operations: betriebsplattform
+links:
+  - url: 'https://ragflow.io/'
+    label: Software Website
+  #- url: 'https://taiga.scout.ch'
+  #  label: taiga.scout.ch
+  - url: 'https://github.com/infiniflow/ragflow'
+    label: Github of Software
+  #- url: 'https://github.com/scout-ch/pbs-taiga'
+  #  label: Deployment Repo
+involved_parties:
+  - party: content/party/Cosinus.yaml
+    description: Operator
+has_sla: false
+relations:
+  - service: content/service/Betriebsplattform.yaml
+    description: Runs on
+    relation_criticality: critically_depends_on
+lifecycle:
+  - state: in_progress
+    date: 2025-09-07T15:00:00.000Z
+additional_information: ''
+last_updated: 2025-09-07T15:00:00.000Z
