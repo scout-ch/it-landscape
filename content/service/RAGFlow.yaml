@@ -1,6 +1,6 @@
 name: RAGFlow
 description: >
-  RAGFlow: A RAG tool for semantic searches over collections of documents.
+  RAGFlow: A RAG tool for semantic searches over various PBS documentation.
 criticality: low
 strategy_reference: ''
 product_owner: content/party/Cosinus.yaml
@@ -9,15 +9,15 @@ operations: betriebsplattform
 links:
   - url: 'https://ragflow.io/'
     label: Software Website
-  #- url: 'https://taiga.scout.ch'
-  #  label: taiga.scout.ch
+  - url: 'https://rag.pfadi.ai'
+    label: Public instance
   - url: 'https://github.com/infiniflow/ragflow'
     label: Github of Software
-  #- url: 'https://github.com/scout-ch/pbs-taiga'
-  #  label: Deployment Repo
+  - url: 'https://github.com/scout-ch/pbs-rag'
+    label: Deployment Repo
 involved_parties:
   - party: content/party/Cosinus.yaml
-    description: Operator
+    description: Operator & Maintainer
 has_sla: false
 relations:
   - service: content/service/Betriebsplattform.yaml
