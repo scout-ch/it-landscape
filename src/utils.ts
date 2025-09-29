@@ -1,4 +1,5 @@
 export const beautifyString = (str: string) => {
+    if (!str) return '';
     return str
         .replace(/([A-Z])/g, ' $1') // Add space before capital letters
         .replace(/_/g, ' ') // Replace underscores with spaces

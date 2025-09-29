@@ -1,11 +1,13 @@
 
-name: Build Pull request
+name: Build PR
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  pull_request_target:
+    branches: 
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: pull-request
     name: build astro
     steps:
       - name: Checkout your repository using git
@@ -21,5 +23,5 @@ jobs:
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           NEXT_PUBLIC_TINA_BRANCH: main
         run: |
-          npm install
-          npm run build
+          yarn install
+          yarn run build

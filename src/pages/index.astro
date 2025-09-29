@@ -10,16 +10,24 @@ const serviceResponse = await client.queries.serviceConnection();
 // @ts-ignore
 const serviceEdges: ServiceConnectionEdges[] = serviceResponse.data.serviceConnection.edges || [];
 
+const now = new Date();
+
 const services = serviceEdges.map((service: ServiceConnectionEdges) => {
   const lifecycle = service.node?.lifecycle || [];
-  const length: number = lifecycle?.length || 0;
+
+  // Find the most recent lifecycle entry that is NOT in the future
+  const currentLifecycle = lifecycle
+    .filter(entry => new Date(entry.date) <= now)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
+
+  const status = currentLifecycle?.state || "unknown";
   const productOwner = service.node?.product_owner?.name;
   const dateString: string = formatDate(service.node?.last_updated)
 
   return {
     id: service.node?.id,
     name: service.node?.name,
-    status: lifecycle[length - 1]?.state,
+    status: status,
     product_owner: productOwner,
     criticality: service.node?.criticality,
     lastUpdated: dateString

@@ -18,11 +18,8 @@ const party: Party = Astro.props.party;
 
 <Layout title={party.name}>
   <main class="container mx-auto py-10">
-    <button
-      class="text-brombeer underline hover:font-medium"
-      onclick="history.back()"
-    >
-      back
+    <button class="btn" onclick="history.back()">
+      Back
     </button>
     <article class="bg-white shadow-md rounded-xl p-10 max-w-4xl mx-auto">
       <h1 class="text-5xl font-extrabold">{party.name}</h1>

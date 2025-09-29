@@ -100,14 +100,14 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
       {
         bucketKeys.map((bucket) => (
           <div class="rounded-lg bg-white p-1 shadow-md" id={bucket}>
             <h2 class="mt-1 ml-2 mb-4 text-2xl font-bold">
               {beautifyString(bucket)}
             </h2>
-            <table cellpadding="7" class="table-auto">
+            <table cellpadding="7" class="table-auto w-full">
               <thead
                 style={{
                   fontWeight: "bolder",
@@ -115,17 +115,17 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
                 }}
               >
                 <tr>
-                  <th class="text-left">Name</th>
+                  <th class="text-left px-2 py-2">Name</th>
                   {variant !== "status" && <th class="text-left">Status</th>}
                   {variant !== "criticality" && <th>Criticality</th>}
                   {variant !== "product_owner" && <th>Product Owner</th>}
-                  <th class="text-left">Last Updated</th>
+                  <th class="text-left px-2 py-2">Last Updated</th>
                 </tr>
               </thead>
               <tbody>
                 {buckets[bucket].map((service) => (
                   <tr id={service.id as string} class="even:bg-brombeer-200">
-                    <td>
+                    <td class="px-2 py-2">
                       <a
                         class="text-brombeer hover:underscore"
                         href={`/it-landscape/services/${service.name}`}
@@ -134,7 +134,7 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
                       </a>
                     </td>
                     {variant !== "status" && (
-                      <td>
+                      <td class="px-2 py-2">
                         <span
                           class={`p-1.5 text-xs rounded ${getBgColorByStatus(service.status)}`}
                         >
@@ -143,7 +143,7 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
                       </td>
                     )}
                     {variant !== "criticality" && (
-                      <td>
+                      <td class="px-2 py-2">
                         <span
                           class={`p-1.5 text-xs rounded ${getBgColorByCriticality(service.criticality)}`}
                         >
@@ -152,9 +152,9 @@ const bucketKeys = Object.keys(buckets).sort((a, b) => {
                       </td>
                     )}
                     {variant !== "product_owner" && (
-                      <td>{service.product_owner}</td>
+                      <td class="px-2 py-2">{service.product_owner}</td>
                     )}
-                    <td>{service.lastUpdated}</td>
+                    <td class="px-2 py-2">{service.lastUpdated}</td>
                   </tr>
                 ))}
               </tbody>

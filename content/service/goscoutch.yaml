@@ -1,0 +1,17 @@
+name: go.scout.ch
+description: |
+  static linkshortener
+criticality: medium
+strategy_reference: ''
+product_owner: content/party/Filou.yaml
+development: internal
+operations: external
+links:
+  - url: 'https://github.com/scout-ch/go.scout.ch'
+    label: Github Repo
+has_sla: false
+lifecycle:
+  - state: in_production
+    date: 2025-04-01T22:00:00.000Z
+additional_information: ''
+last_updated: 2025-08-23T12:05:29.780Z

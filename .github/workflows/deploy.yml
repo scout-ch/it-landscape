@@ -31,8 +31,8 @@ jobs:
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           NEXT_PUBLIC_TINA_BRANCH: main
         run: |
-          npm install
-          npm run build
+          yarn install
+          yarn run build
       - name: Create Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
