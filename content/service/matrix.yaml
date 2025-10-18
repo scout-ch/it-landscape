@@ -1,0 +1,28 @@
+name: Matrix
+description: >
+  Element Server Suite Community: An open network for secure, decentralised
+  communication
+criticality: low
+strategy_reference: ""
+product_owner: content/party/Clever.yaml
+development: external
+operations: betriebsplattform
+links:
+  - url: "https://chat.scout.ch"
+    label: Web Client
+  - url: "https://github.com/scout-ch/pbs-matrix"
+    label: Deployment config
+  - url: "https://matrix.org"
+    label: Matrix Foundation
+  - url: "https://element.io/server-suite/community"
+    label: Product Website
+has_sla: false
+relations:
+  - service: content/service/Betriebsplattform.yaml
+    description: Runs on
+    relation_criticality: critically_depends_on
+lifecycle:
+  - state: in_progress
+    date: 2025-10-17T22:00:00.000Z
+additional_information: ""
+last_updated: 2025-10-18T13:26:14.800Z
