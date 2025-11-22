@@ -1,0 +1,24 @@
+name: pbs-redirector
+description: |
+  Small tool to properly redirect domains to other locations
+criticality: low
+strategy_reference: ''
+product_owner: content/party/GSPBS.yaml
+development: external
+operations: betriebsplattform
+links:
+  - url: 'https://github.com/scout-ch/pbs-redirector'
+    label: Repo
+involved_parties:
+  - party: content/party/Clever.yaml
+    description: Developer
+has_sla: false
+relations:
+  - service: content/service/Betriebsplattform.yaml
+    description: Runs on
+    relation_criticality: critically_depends_on
+lifecycle:
+  - state: in_production
+    date: 2025-11-21T23:00:00.000Z
+additional_information: ''
+last_updated: 2025-11-22T17:07:26.562Z
