@@ -1,0 +1,27 @@
+name: MiData Doku
+description: |
+  Diverse Dokumentationen und Releasenotes zu MiData
+criticality: low
+strategy_reference: ''
+product_owner: content/party/Team-MiData.yaml
+development: internal
+links:
+  - url: 'https://github.com/scout-ch/docu'
+    label: Github Repository
+  - url: 'https://docu.scout.ch/'
+    label: Doku
+involved_parties:
+  - party: content/party/Team-MiData.yaml
+    description: Owner
+has_sla: false
+lifecycle:
+  - state: in_production
+    date: 2023-05-02T10:00:00.000Z
+  - state: idea
+    date: 2019-01-08T10:21:00.000Z
+  - state: in_progress
+    date: 2020-10-26T16:45:00.000Z
+tech_stack:
+  - stack_component: content/tech_stack/GitHub-pages.yaml
+additional_information: ''
+last_updated: 2025-12-05T17:05:46.870Z
