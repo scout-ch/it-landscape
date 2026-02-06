@@ -13,7 +13,7 @@ strategy_reference: |
 
   * 7.1.2 Audit MiData
   * 7.1.3 Weiterentwicklung MiData
-product_owner: content/party/scattle.yaml
+product_owner: content/party/Nano.yaml
 development: external
 operations: external
 links:
