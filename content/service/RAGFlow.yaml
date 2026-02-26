@@ -13,7 +13,7 @@ links:
     label: Public instance
   - url: 'https://github.com/infiniflow/ragflow'
     label: Github of Software
-  - url: 'https://github.com/scout-ch/pbs-rag'
+  - url: 'https://github.com/scout-ch/tractor-k8s-shared-cosinus-ragflow'
     label: Deployment Repo
 involved_parties:
   - party: content/party/Cosinus.yaml
