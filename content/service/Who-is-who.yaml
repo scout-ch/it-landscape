@@ -1,20 +1,22 @@
 name: Who is who
 description: ''
 strategy_reference: ''
-product_owner: content/party/scattle.yaml
-development: external
+product_owner: content/party/Floh.yaml
+development: internal
 operations: betriebsplattform
 links:
-  - url: 'https://who-is-who.pbs.ch/'
+  - url: 'https://who-is-who.scout.ch/'
     label: prod Tool
+  - url: 'https://github.com/scout-ch/who-is-who'
+    label: Github Repo
 has_sla: false
 relations:
   - service: content/service/MiData.yaml
     description: holt daten
     relation_criticality: critically_depends_on
 lifecycle:
-  - state: in_progress
+  - state: in_production
     date: 2024-11-30T23:00:00.000Z
 additional_information: |
-  Entwicklung: Renuo
-last_updated: 2025-02-26T20:21:12.929Z
+  Entwicklung: Floh
+last_updated: 2025-12-13T14:32:22.143Z
