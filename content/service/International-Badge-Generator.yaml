@@ -1,0 +1,29 @@
+name: International Badge Generator
+description: |
+  Generate custom badges for your international scout camp
+
+  Project from the KoInt
+criticality: low
+strategy_reference: ''
+product_owner: content/party/Folletta.yaml
+development: internal
+operations: external
+links:
+  - url: 'https://github.com/scout-ch/international-badge-generator'
+    label: Github Repo
+  - url: 'https://scout-ch.github.io/international-badge-generator/'
+    label: Preview on github pages
+involved_parties:
+  - party: content/party/Folletta.yaml
+    description: Development
+  - party: content/party/koint.yaml
+    description: initiator
+has_sla: false
+lifecycle:
+  - state: idea
+    date: 2025-04-30T22:00:00.000Z
+  - state: in_progress
+    date: 2025-07-31T22:00:00.000Z
+additional_information: |
+  static html page
+last_updated: 2025-10-31T13:26:57.613Z
