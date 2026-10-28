@@ -10,6 +10,7 @@ strategy_reference: |
 
   Kurs- und Lagerplanungstool "eCamp v3"
 development: external
+product_owner: content/party/eCampv3.yaml
 operations: external
 links:
   - url: 'https://app.ecamp3.ch'
@@ -18,6 +19,8 @@ links:
     label: Teststystem
   - url: 'https://github.com/ecamp/ecamp3'
     label: GitHub
+  - url: 'https://ecamp3.ch'
+    label: Landingpage & Blog
 involved_parties:
   - party: content/party/ITKom.yaml
     description: Betreuung
