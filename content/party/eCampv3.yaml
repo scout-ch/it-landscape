@@ -1,3 +1,6 @@
 key: eCampv3
-name: Entwicklungsteam eCamp v3
+name: eCamp Core Team
 type: organization
+links:
+  - url: 'https://ecamp3.ch/'
+    label: Website
