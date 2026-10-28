@@ -1,6 +1,6 @@
 name: eCamp
 description: |
-  digital camp planning for everyone
+  Digital camp planning for everyone
 strategy_reference: |
   Steckbrief
 
@@ -25,7 +25,7 @@ involved_parties:
   - party: content/party/ITKom.yaml
     description: Betreuung
   - party: content/party/eCampv3.yaml
-    description: Betreuung
+    description: Entwicklung
 has_sla: false
 relations:
   - service: content/service/MiData.yaml
@@ -42,4 +42,4 @@ tech_stack:
   - stack_component: content/tech_stack/PHP.yaml
   - stack_component: content/tech_stack/Vuejs.yaml
 additional_information: ''
-last_updated: 2025-02-26T18:40:10.699Z
+last_updated: 2026-10-28T17:28:42.1337Z
