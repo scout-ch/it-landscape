@@ -12,6 +12,7 @@ strategy_reference: |
 development: external
 product_owner: content/party/eCampv3.yaml
 operations: external
+criticality: high
 links:
   - url: 'https://app.ecamp3.ch'
     label: eCamp v3 App
